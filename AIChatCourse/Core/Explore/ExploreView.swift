@@ -13,7 +13,7 @@ struct ExploreView: View {
             Text("Explore")
                 .navigationTitle("Explore")
 
-            NavigationLink("Navigate", destination: Text("Other View"))
+            NavigationLink("Navigate", destination: Text("Navigate"))
         }
     }
 }
