@@ -1,6 +1,26 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "AI Chat" : {
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI Chat"
+          }
+        }
+      }
+    },
+    "Already have an account? Sign in" : {
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Ya tienes una cuenta? Ingresar"
+          }
+        }
+      }
+    },
     "Chats" : {
       "localizations" : {
         "es-419" : {
@@ -61,6 +81,16 @@
         }
       }
     },
+    "Privacy Policy" : {
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Política de Privacidad"
+          }
+        }
+      }
+    },
     "Profile" : {
       "localizations" : {
         "es-419" : {
@@ -92,12 +122,12 @@
         }
       }
     },
-    "Welcome" : {
+    "Terms of Service" : {
       "localizations" : {
         "es-419" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bienvenido"
+            "value" : "Términos de Uso"
           }
         }
       }
