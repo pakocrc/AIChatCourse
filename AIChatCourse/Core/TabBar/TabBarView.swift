@@ -12,7 +12,7 @@ struct TabBarView: View {
         TabView {
             ExploreView()
                 .tabItem {
-                    Label("Explore", systemImage: "eyes")
+                    Label("Explore", systemImage: "magnifyingglass")
                 }
 
             ChatsView()
