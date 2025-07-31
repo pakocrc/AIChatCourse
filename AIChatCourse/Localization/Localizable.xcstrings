@@ -21,12 +21,61 @@
         }
       }
     },
+    "and chat with them!" : {
+
+    },
+    "avatars " : {
+
+    },
     "Chats" : {
       "localizations" : {
         "es-419" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Chats"
+          }
+        }
+      }
+    },
+    "Continue" : {
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuar"
+          }
+        }
+      }
+    },
+    "Continue the onboarding process" : {
+
+    },
+    "Displays the privacy policy" : {
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muestra la política de privacidad"
+          }
+        }
+      }
+    },
+    "Displays the sign in page" : {
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muestra la página de inicio de sesión"
+          }
+        }
+      }
+    },
+    "Displays the terms of service" : {
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muestra los términos y condiciones"
           }
         }
       }
@@ -51,12 +100,100 @@
         }
       }
     },
+    "Finish the onboarding" : {
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finalizar el onboarding"
+          }
+        }
+      }
+    },
     "Get started" : {
       "localizations" : {
         "es-419" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Empezar"
+          }
+        }
+      }
+    },
+    "Go to the main app" : {
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ir a la página inicial de la aplicación"
+          }
+        }
+      }
+    },
+    "Have " : {
+
+    },
+    "Have real conversations with AI generated responses." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ten conversaciones reales con personajes de IA"
+          }
+        }
+      }
+    },
+    "Image" : {
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Imagen"
+          }
+        }
+      }
+    },
+    "Link to privacy policy page" : {
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enlace a la política de privacidad"
+          }
+        }
+      }
+    },
+    "Link to sign in page" : {
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enlace a la página de iniciar sesión"
+          }
+        }
+      }
+    },
+    "Link to terms of service page" : {
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enlace a los términos y condiciones"
+          }
+        }
+      }
+    },
+    "Make your own " : {
+
+    },
+    "Make your own avatars and chat with them!" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crea tus propios personajes y habla con ellos"
           }
         }
       }
@@ -72,6 +209,7 @@
       }
     },
     "Onboarding completed!" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es-419" : {
           "stringUnit" : {
@@ -101,6 +239,12 @@
         }
       }
     },
+    "real conversations " : {
+
+    },
+    "Select a profile color" : {
+
+    },
     "Settings" : {
       "localizations" : {
         "es-419" : {
@@ -111,6 +255,9 @@
         }
       }
     },
+    "Setup complete!" : {
+
+    },
     "Sign Out" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -118,6 +265,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cerrar Sesión"
+          }
+        }
+      }
+    },
+    "Start the onboarding process" : {
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Empezar el proceso de onboarding"
           }
         }
       }
@@ -131,6 +288,22 @@
           }
         }
       }
+    },
+    "We've set up everything for you to start chatting!" : {
+
+    },
+    "Welcome to the AI Chat onboarding" : {
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bienvenido al onboarding de AI Chat"
+          }
+        }
+      }
+    },
+    "with AI generated responses." : {
+
     }
   },
   "version" : "1.0"

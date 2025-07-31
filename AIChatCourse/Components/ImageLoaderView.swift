@@ -45,6 +45,7 @@ struct ImageLoaderView: View {
                             })
                     }
                 }
+                .accessibilityLabel(Text("Image"))
             }
             .clipped()
     }

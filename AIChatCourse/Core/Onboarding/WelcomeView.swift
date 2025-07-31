@@ -16,6 +16,8 @@ struct WelcomeView: View {
                 ImageLoaderView(imageUrlString: imageUrl)
                     .ignoresSafeArea()
                 
+                titleSection
+                
                 middleSection
                 
                 bottomSection
@@ -23,33 +25,42 @@ struct WelcomeView: View {
         }
     }
     
-    private var middleSection: some View {
+    private var titleSection: some View {
         Text("AI Chat")
             .font(.largeTitle)
             .fontWeight(.bold)
             .padding(.top)
+            .accessibilityLabel(Text("Welcome to the AI Chat onboarding"))
+    }
+    
+    private var middleSection: some View {
+        NavigationLink {
+            OnboardingIntroView()
+        } label: {
+            Text("Get started")
+                .callToAction()
+                .accessibilityLabel(Text("Start the onboarding process"))
+                .accessibilityHint(Text("Start the onboarding process"))
+        }
+        .padding()
     }
     
     private var bottomSection: some View {
         VStack(spacing: 20) {
             
-            NavigationLink {
-                OnboardingCompletedView()
-            } label: {
-                Text("Get started")
-                    .callToAction()
-            }
-            .padding()
-            
             Text("Already have an account? Sign in")
                 .font(.headline)
                 .fontWeight(.regular)
                 .underline()
+                .accessibilityLabel(Text("Link to sign in page"))
+                .accessibilityHint(Text("Displays the sign in page"))
             
             HStack(spacing: 10) {
                 Link("Terms of Service", destination: URL(string: Constants.termsOfServiceUrl)!)
                     .font(.callout)
                     .fontWeight(.medium)
+                    .accessibilityLabel(Text("Link to terms of service page"))
+                    .accessibilityHint(Text("Displays the terms of service"))
                 
                 Circle()
                     .fill(.accent)
@@ -58,19 +69,25 @@ struct WelcomeView: View {
                 Link("Privacy Policy", destination: URL(string: Constants.privacyPolicyUrl)!)
                     .font(.callout)
                     .fontWeight(.medium)
+                    .accessibilityLabel(Text("Link to privacy policy page"))
+                    .accessibilityHint(Text("Displays the privacy policy"))
             }
         }
     }
 }
 
 #Preview("Light") {
-    WelcomeView()
-        .environment(AppState())
-        .colorScheme(.light)
+    NavigationStack {
+        WelcomeView()
+            .environment(AppState())
+            .colorScheme(.light)
+    }
 }
 
 #Preview("Dark") {
-    WelcomeView()
-        .environment(AppState())
-        .colorScheme(.dark)
+    NavigationStack {
+        WelcomeView()
+            .environment(AppState())
+            .colorScheme(.dark)
+    }
 }
