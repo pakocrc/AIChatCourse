@@ -7,34 +7,6 @@
 
 import Foundation
 
-enum CharacterOption: String {
-    case man, woman, dog, cat, alien
-    
-    static var `default`: Self { .man }
-}
-
-enum CharacterAction: String {
-    case smiling, sitting, eating, drinking, walking, shopping, studying, working, sleeping, relaxing, fighting, crying, laughing
-    
-    static var `default`: Self { .smiling }
-}
-
-enum CharacterLocation: String {
-    case beach, forest, city, mountain, desert, space
-    
-    static var `default`: Self { .beach }
-}
-
-struct CharacterDescriptionBuilder {
-    let characterOption: CharacterOption
-    let characterAction: CharacterAction
-    let characterLocation: CharacterLocation
-    
-    var characterDescription: String {
-        return "A \(characterOption.rawValue) \(characterAction.rawValue) at the \(characterLocation.rawValue)."
-    }
-}
-
 struct AvatarModel {
     let avatarId: String
     let name: String?
@@ -118,5 +90,43 @@ struct AvatarModel {
                 dateCreated: .now
             )
         ]
+    }
+}
+
+extension AvatarModel: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(avatarId)
+    }
+    
+    static func == (lhs: AvatarModel, rhs: AvatarModel) -> Bool {
+        return lhs.avatarId == rhs.avatarId
+    }
+}
+
+enum CharacterOption: String {
+    case man, woman, dog, cat, alien
+    
+    static var `default`: Self { .man }
+}
+
+enum CharacterAction: String {
+    case smiling, sitting, eating, drinking, walking, shopping, studying, working, sleeping, relaxing, fighting, crying, laughing
+    
+    static var `default`: Self { .smiling }
+}
+
+enum CharacterLocation: String {
+    case beach, forest, city, mountain, desert, space
+    
+    static var `default`: Self { .beach }
+}
+
+struct CharacterDescriptionBuilder {
+    let characterOption: CharacterOption
+    let characterAction: CharacterAction
+    let characterLocation: CharacterLocation
+    
+    var characterDescription: String {
+        return "A \(characterOption.rawValue) \(characterAction.rawValue) at the \(characterLocation.rawValue)."
     }
 }

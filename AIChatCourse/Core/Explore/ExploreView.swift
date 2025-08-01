@@ -11,11 +11,18 @@ struct ExploreView: View {
     var body: some View {
         NavigationStack {
             
-            PrimaryCellView(
-                title: AvatarModel.mock.name,
-                subtitle: AvatarModel.mock.characterDescription?.characterDescription,
-                imageUrl: Constants.randomImageUrl
-            )
+            
+            ScrollView(.horizontal) {
+                ForEach(AvatarModel.mocks, id: \.avatarId) { avatar in
+                    PrimaryCellView(
+                        title: avatar.name,
+                        subtitle: avatar.characterDescription?.characterDescription,
+                        imageUrl: Constants.randomImageUrl
+                    )
+                    .frame(width: 300, height: 200)
+                }
+            }
+//            .frame(maxWidth: .infinity)
         }
     }
 }
