@@ -103,7 +103,7 @@ extension AvatarModel: Hashable {
     }
 }
 
-enum CharacterOption: String {
+enum CharacterOption: String, Hashable, CaseIterable {
     case man, woman, dog, cat, alien
     
     static var `default`: Self { .man }

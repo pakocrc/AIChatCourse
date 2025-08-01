@@ -8,25 +8,67 @@
 import SwiftUI
 
 struct ExploreView: View {
+    
+    private var featuredAvatars: [AvatarModel] = AvatarModel.mocks
+    private var categories: [CharacterOption] = CharacterOption.allCases
+    
     var body: some View {
         NavigationStack {
             
+            List {
+                featuredSection
+                
+                categoriesSection
+            }
             
-            ScrollView(.horizontal) {
-                ForEach(AvatarModel.mocks, id: \.avatarId) { avatar in
+            .navigationTitle("Explore")
+        }
+    }
+    
+    private var featuredSection: some View {
+        Section {
+            ZStack {
+                CarouselView(items: featuredAvatars) { item in
                     PrimaryCellView(
-                        title: avatar.name,
-                        subtitle: avatar.characterDescription?.characterDescription,
-                        imageUrl: Constants.randomImageUrl
+                        title: item.name,
+                        subtitle: item.characterDescription?.characterDescription,
+                        imageUrlString: Constants.randomImageUrl
                     )
-                    .frame(width: 300, height: 200)
                 }
             }
-//            .frame(maxWidth: .infinity)
+            .removelistRowFormatting()
+        } header: {
+            Text("Featured Avatars")
+                .font(.headline)
+        }
+    }
+    
+    private var categoriesSection: some View {
+        Section {
+            ScrollView(.horizontal) {
+                HStack(spacing: 16) {
+                    ForEach(categories, id: \.self) { item in
+                        CategoryCellView(
+                            title: item.rawValue,
+                            imageUrlString: Constants.randomImageUrl
+                        )
+                    }
+                }
+                .frame(height: 130)
+                .scrollTargetBehavior(.viewAligned)
+            }
+            .scrollIndicators(.hidden)
+            .removelistRowFormatting()
+            
+        } header: {
+            Text("Categories")
+                .font(.headline)
         }
     }
 }
 
 #Preview {
-    ExploreView()
+    NavigationStack {
+        ExploreView()
+    }
 }

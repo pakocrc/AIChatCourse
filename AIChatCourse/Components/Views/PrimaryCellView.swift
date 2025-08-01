@@ -11,12 +11,12 @@ struct PrimaryCellView: View {
     
     var title: String?
     var subtitle: String?
-    var imageUrl: String?
+    var imageUrlString: String?
     
     var body: some View {
         ZStack {
-            if let imageUrl {
-                ImageLoaderView(imageUrlString: imageUrl)
+            if let imageUrlString {
+                ImageLoaderView(imageUrlString: imageUrlString)
             } else {
                 Rectangle()
                     .fill(.accent)
@@ -42,13 +42,7 @@ struct PrimaryCellView: View {
             .padding()
             .foregroundStyle(.white)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(
-                LinearGradient(colors: [Color.black.opacity(0.1),
-                                        Color.black.opacity(0.3),
-                                        Color.black.opacity(0.4)],
-                               startPoint: .top,
-                               endPoint: .bottom)
-            )
+            .gradientBackgroundForText()
         }
         .cornerRadius(10.0)
         .shadow(color: .black, radius: 2.0)
@@ -61,49 +55,49 @@ struct PrimaryCellView: View {
             PrimaryCellView(
                 title: "Title",
                 subtitle: "Subtitle subtitle subtitle",
-                imageUrl: Constants.randomImageUrl
+                imageUrlString: Constants.randomImageUrl
             )
             .frame(width: 300, height: 200, alignment: .center)
             
             PrimaryCellView(
                 title: "Title",
                 subtitle: "Subtitle subtitle subtitle",
-                imageUrl: nil
+                imageUrlString: nil
             )
             .frame(width: 300, height: 200, alignment: .center)
             
             PrimaryCellView(
                 title: "Title",
                 subtitle: "Subtitle subtitle subtitle",
-                imageUrl: Constants.randomImageUrl
+                imageUrlString: Constants.randomImageUrl
             )
             .frame(width: 300, height: 200, alignment: .center)
             
             PrimaryCellView(
                 title: nil,
                 subtitle: "Subtitle subtitle subtitle",
-                imageUrl: Constants.randomImageUrl
+                imageUrlString: Constants.randomImageUrl
             )
             .frame(width: 300, height: 200, alignment: .center)
             
             PrimaryCellView(
                 title: "Title",
                 subtitle: nil,
-                imageUrl: Constants.randomImageUrl
+                imageUrlString: Constants.randomImageUrl
             )
             .frame(width: 300, height: 200, alignment: .center)
             
             PrimaryCellView(
                 title: "Title",
                 subtitle: nil,
-                imageUrl: Constants.randomImageUrl
+                imageUrlString: Constants.randomImageUrl
             )
             .frame(width: 400, height: 300, alignment: .center)
             
             PrimaryCellView(
                 title: "Title",
                 subtitle: "Subtitle subtitle subtitle",
-                imageUrl: Constants.randomImageUrl
+                imageUrlString: Constants.randomImageUrl
             )
             .frame(width: 100, height: 100, alignment: .center)
         }

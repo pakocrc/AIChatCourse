@@ -27,6 +27,9 @@
     "avatars " : {
 
     },
+    "Categories" : {
+
+    },
     "Chats" : {
       "localizations" : {
         "es-419" : {
@@ -89,6 +92,9 @@
           }
         }
       }
+    },
+    "Featured Avatars" : {
+
     },
     "Finish" : {
       "localizations" : {

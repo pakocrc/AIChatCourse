@@ -63,7 +63,7 @@ struct CarouselView<CellView: View, T: Hashable>: View {
         PrimaryCellView(
             title: item.name,
             subtitle: item.characterDescription?.characterDescription,
-            imageUrl: Constants.randomImageUrl
+            imageUrlString: Constants.randomImageUrl
         )
     })
 }

@@ -54,6 +54,7 @@ struct WelcomeView: View {
                 .fontWeight(.regular)
                 .underline()
                 .limitMaxDynamicTypeSize(dynamicTypeSize)
+                .tappableBackground()
                 .accessibilityLabel(Text("Link to sign in page"))
                 .accessibilityHint(Text("Displays the sign in page"))
             
