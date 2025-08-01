@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct WelcomeView: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State var imageUrl = Constants.randomImageUrl
     
     var body: some View {
@@ -52,6 +53,7 @@ struct WelcomeView: View {
                 .font(.headline)
                 .fontWeight(.regular)
                 .underline()
+                .limitMaxDynamicTypeSize(dynamicTypeSize)
                 .accessibilityLabel(Text("Link to sign in page"))
                 .accessibilityHint(Text("Displays the sign in page"))
             
@@ -59,6 +61,7 @@ struct WelcomeView: View {
                 Link("Terms of Service", destination: URL(string: Constants.termsOfServiceUrl)!)
                     .font(.callout)
                     .fontWeight(.medium)
+                    .limitMaxDynamicTypeSize(dynamicTypeSize)
                     .accessibilityLabel(Text("Link to terms of service page"))
                     .accessibilityHint(Text("Displays the terms of service"))
                 
@@ -69,6 +72,7 @@ struct WelcomeView: View {
                 Link("Privacy Policy", destination: URL(string: Constants.privacyPolicyUrl)!)
                     .font(.callout)
                     .fontWeight(.medium)
+                    .limitMaxDynamicTypeSize(dynamicTypeSize)
                     .accessibilityLabel(Text("Link to privacy policy page"))
                     .accessibilityHint(Text("Displays the privacy policy"))
             }

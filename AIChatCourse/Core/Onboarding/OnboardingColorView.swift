@@ -46,6 +46,7 @@ struct OnboardingColorView: View {
                 .font(.title2)
                 .fontWeight(.semibold)
                 .foregroundStyle(Color.primary)
+                .multilineTextAlignment(.center)
             ) {
                 ForEach(colors, id: \.self) { color in
                     Circle()

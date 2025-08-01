@@ -10,10 +10,12 @@ import SwiftUI
 struct ExploreView: View {
     var body: some View {
         NavigationStack {
-            Text("Explore")
-                .navigationTitle("Explore")
-
-            NavigationLink("Navigate", destination: Text("Navigate"))
+            
+            PrimaryCellView(
+                title: AvatarModel.mock.name,
+                subtitle: AvatarModel.mock.characterDescription?.characterDescription,
+                imageUrl: Constants.randomImageUrl
+            )
         }
     }
 }

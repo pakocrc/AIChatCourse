@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct OnboardingIntroView: View {
+    // Accesibility Dynamic Type Size
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    
     var body: some View {
         VStack {
             topSection
@@ -29,11 +32,11 @@ struct OnboardingIntroView: View {
                 .fontWeight(.bold)
                 .foregroundStyle(.accent)
             +
-            Text("and chat with them!")
+            Text("and chat with them!\n\n")
                 .font(.title2)
                 .fontWeight(.regular)
                 .foregroundStyle(.primary)
-            
+            +
             Text("Have ")
                 .font(.title2)
                 .fontWeight(.regular)
@@ -49,7 +52,7 @@ struct OnboardingIntroView: View {
                 .fontWeight(.regular)
                 .foregroundStyle(.primary)
         }
-        .baselineOffset(10)
+        .limitMaxDynamicTypeSize(dynamicTypeSize)
         .frame(maxHeight: .infinity)
     }
     

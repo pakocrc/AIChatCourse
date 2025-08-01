@@ -21,7 +21,7 @@
         }
       }
     },
-    "and chat with them!" : {
+    "and chat with them!\n\n" : {
 
     },
     "avatars " : {
@@ -199,6 +199,7 @@
       }
     },
     "Navigate" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es-419" : {
           "stringUnit" : {
