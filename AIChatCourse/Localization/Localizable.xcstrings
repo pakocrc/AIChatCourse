@@ -40,6 +40,9 @@
         }
       }
     },
+    "Click + to create your first avatar" : {
+
+    },
     "Continue" : {
       "localizations" : {
         "es-419" : {
@@ -204,6 +207,9 @@
         }
       }
     },
+    "My Avatars" : {
+
+    },
     "Navigate" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -218,6 +224,9 @@
     "NEW" : {
 
     },
+    "No avatars yet" : {
+
+    },
     "Onboarding completed!" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -228,6 +237,9 @@
           }
         }
       }
+    },
+    "OnShowCreateNewAvatarView" : {
+
     },
     "Popular" : {
 

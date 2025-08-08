@@ -43,11 +43,11 @@ struct AvatarModel {
         )
     }
     
-    static var mock: AvatarModel {
+    static var mock: Self {
         mocks.first!
     }
     
-    static var mocks: [AvatarModel] {
+    static var mocks: [Self] {
         [
             AvatarModel(
                 avatarId: UUID().uuidString,

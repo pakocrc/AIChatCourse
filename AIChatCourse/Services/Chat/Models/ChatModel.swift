@@ -15,11 +15,11 @@ struct ChatModel: Codable, Identifiable {
 	let dateModified: Date
 	
 	// MARK: - Mocks
-	static var mock: ChatModel {
+	static var mock: Self {
 		mocks[0]
 	}
 	
-	static var mocks: [ChatModel] {
+	static var mocks: [Self] {
 		let formatter = ISO8601DateFormatter()
 		
 		return [
