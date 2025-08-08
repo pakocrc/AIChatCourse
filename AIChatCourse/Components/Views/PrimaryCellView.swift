@@ -28,7 +28,7 @@ struct PrimaryCellView: View {
                 if let title {
                     Text(title)
                         .foregroundStyle(.white)
-                        .font(.headline)
+                        .font(.title2)
                         .fontWeight(.semibold)
                 }
                 
@@ -36,7 +36,7 @@ struct PrimaryCellView: View {
                     Text(subtitle)
                         .foregroundStyle(.white)
                         .font(.headline)
-                        .fontWeight(.light)
+                        .fontWeight(.regular)
                 }
             }
             .padding()

@@ -28,7 +28,7 @@ struct CategoryCellView: View {
                 if let title {
                     Text(title.capitalized)
                         .foregroundStyle(.white)
-                        .font(.title)
+                        .font(.title3)
                         .fontWeight(.semibold)
                 }
             }

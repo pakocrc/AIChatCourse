@@ -11,6 +11,7 @@ struct ExploreView: View {
     
     private var featuredAvatars: [AvatarModel] = AvatarModel.mocks
     private var categories: [CharacterOption] = CharacterOption.allCases
+	private var popularAvatars: [AvatarModel] = AvatarModel.mocks
     
     var body: some View {
         NavigationStack {
@@ -19,6 +20,8 @@ struct ExploreView: View {
                 featuredSection
                 
                 categoriesSection
+				
+				popularSection
             }
             
             .navigationTitle("Explore")
@@ -34,6 +37,9 @@ struct ExploreView: View {
                         subtitle: item.characterDescription?.characterDescription,
                         imageUrlString: Constants.randomImageUrl
                     )
+					.anyButton {
+						
+					}
                 }
             }
             .removelistRowFormatting()
@@ -52,7 +58,10 @@ struct ExploreView: View {
                             title: item.rawValue,
                             imageUrlString: Constants.randomImageUrl
                         )
-                    }
+						.anyButton {
+							
+						}
+					}
                 }
                 .frame(height: 130)
                 .scrollTargetBehavior(.viewAligned)
@@ -65,6 +74,26 @@ struct ExploreView: View {
                 .font(.headline)
         }
     }
+	
+	private var popularSection: some View {
+		Section {
+			ForEach(popularAvatars, id: \.avatarId) { item in
+				PopularCellView(
+					title: item.name,
+					subtitle: item.characterDescription?.characterDescription,
+					imageUrlString: Constants.randomImageUrl
+				)
+				.anyButton(.highlight) {
+					
+				}
+			}
+			
+		} header: {
+			Text("Popular")
+				.font(.headline)
+		}
+		.removelistRowFormatting()
+	}
 }
 
 #Preview {

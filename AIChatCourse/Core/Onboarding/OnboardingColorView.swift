@@ -74,6 +74,7 @@ struct OnboardingColorView: View {
                     OnboardingCompletedView(selectedColor: selectedColor)
                 } label: {
                     Text("Continue")
+						.frame(maxWidth: .infinity)
                         .callToAction()
                         .accessibilityLabel(Text("Continue the onboarding process"))
                         .accessibilityHint(Text("Continue the onboarding process"))
