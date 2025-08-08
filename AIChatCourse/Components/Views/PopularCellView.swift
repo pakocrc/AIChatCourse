@@ -48,26 +48,26 @@ struct PopularCellView: View {
 		
 		VStack {
 			PopularCellView(
-				title: AvatarModel.mocks.first?.name!,
-				subtitle: AvatarModel.mocks.first?.characterDescription?.characterDescription ?? "",
-				imageUrlString: AvatarModel.mocks.first?.profileImageUrlString ?? ""
+				title: AvatarModel.mock.name,
+				subtitle: AvatarModel.mock.characterDescription?.characterDescription ?? "",
+				imageUrlString: AvatarModel.mock.profileImageUrlString ?? ""
 			)
 			
 			PopularCellView(
 				title: nil,
-				subtitle: AvatarModel.mocks.first?.characterDescription?.characterDescription ?? "",
-				imageUrlString: AvatarModel.mocks.first?.profileImageUrlString ?? ""
+				subtitle: AvatarModel.mock.characterDescription?.characterDescription ?? "",
+				imageUrlString: AvatarModel.mock.profileImageUrlString ?? ""
 			)
 			
 			PopularCellView(
-				title: AvatarModel.mocks.first?.name!,
+				title: AvatarModel.mock.name!,
 				subtitle: nil,
-				imageUrlString: AvatarModel.mocks.first?.profileImageUrlString ?? ""
+				imageUrlString: AvatarModel.mock.profileImageUrlString ?? ""
 			)
 			
 			PopularCellView(
-				title: AvatarModel.mocks.first?.name!,
-				subtitle: AvatarModel.mocks.first?.characterDescription?.characterDescription ?? "",
+				title: AvatarModel.mock.name!,
+				subtitle: AvatarModel.mock.characterDescription?.characterDescription ?? "",
 				imageUrlString: nil
 			)
 			

@@ -8,14 +8,20 @@
 import SwiftUI
 
 struct ChatsView: View {
-    var body: some View {
-        NavigationStack {
-            Text("Chats")
-                .navigationTitle("Chats")
-        }
-    }
+	@State private var chats: [ChatModel] = ChatModel.mocks
+	
+	var body: some View {
+		NavigationStack {
+			List {
+				ForEach(chats, id: \.id) { chat in
+					Text(chat.id)
+				}
+			}
+			.navigationTitle("Chats")
+		}
+	}
 }
 
 #Preview {
-    ChatsView()
+	ChatsView()
 }
