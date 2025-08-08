@@ -215,6 +215,9 @@
         }
       }
     },
+    "NEW" : {
+
+    },
     "Onboarding completed!" : {
       "extractionState" : "stale",
       "localizations" : {

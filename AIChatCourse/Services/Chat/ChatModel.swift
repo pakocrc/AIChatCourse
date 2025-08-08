@@ -14,6 +14,7 @@ struct ChatModel: Codable, Identifiable {
 	let dateCreated: Date
 	let dateModified: Date
 	
+	// MARK: - Mocks
 	static var mock: ChatModel {
 		mocks[0]
 	}
