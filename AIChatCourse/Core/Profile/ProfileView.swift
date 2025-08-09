@@ -22,11 +22,11 @@ struct ProfileView: View {
 				
 				myAvatarsSection
 			}
-		}
-		.navigationTitle("Profile")
-		.toolbar {
-			ToolbarItem(placement: .topBarTrailing) {
-				settingsButton
+			.navigationTitle("Profile")
+			.toolbar {
+				ToolbarItem(placement: .topBarTrailing) {
+					settingsButton
+				}
 			}
 		}
 		.sheet(isPresented: $showSettingsView) {

@@ -10,7 +10,8 @@ import SwiftUI
 struct WelcomeView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State var imageUrl = Constants.randomImageUrl
-    
+	@State var createAccountSheetPresented: Bool = false
+	
     var body: some View {
         NavigationStack {
             VStack {
@@ -24,8 +25,16 @@ struct WelcomeView: View {
                 bottomSection
             }
         }
+		.sheet(isPresented: $createAccountSheetPresented) {
+			CreateAccountView(
+				title: "Sign In",
+				subtitle: "Already have an account? Connect to an existing account instead."
+			)
+				.presentationDetents([.medium])
+		}
     }
     
+	// MARK: - View Components
     private var titleSection: some View {
         Text("AI Chat")
             .font(.largeTitle)
@@ -55,6 +64,9 @@ struct WelcomeView: View {
                 .underline()
                 .limitMaxDynamicTypeSize(dynamicTypeSize)
                 .tappableBackground()
+				.anyButton(.press, action: {
+					onSignInPressed()
+				})
                 .accessibilityLabel(Text("Link to sign in page"))
                 .accessibilityHint(Text("Displays the sign in page"))
             
@@ -79,6 +91,11 @@ struct WelcomeView: View {
             }
         }
     }
+	
+	// MARK: - Functions
+	private func onSignInPressed() {
+		createAccountSheetPresented = true
+	}
 }
 
 #Preview("Light") {

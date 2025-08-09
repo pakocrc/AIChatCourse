@@ -1,6 +1,36 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "@ Created by Francisco Cordoba 2025" : {
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "@ Creado por Francisco Córdoba 2025"
+          }
+        }
+      }
+    },
+    "Account" : {
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuenta"
+          }
+        }
+      }
+    },
+    "Account Status" : {
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estatus de Cuenta"
+          }
+        }
+      }
+    },
     "AI Chat" : {
       "localizations" : {
         "es-419" : {
@@ -22,13 +52,47 @@
       }
     },
     "and chat with them!\n\n" : {
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "y chatea con ellos"
+          }
+        }
+      }
+    },
+    "App" : {
 
     },
     "avatars " : {
-
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "avatars"
+          }
+        }
+      }
+    },
+    "Build Number" : {
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Número de build"
+          }
+        }
+      }
     },
     "Categories" : {
-
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Categorias"
+          }
+        }
+      }
     },
     "Chats" : {
       "localizations" : {
@@ -41,7 +105,24 @@
       }
     },
     "Click + to create your first avatar" : {
-
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Presiona + para crear tu primer avatar"
+          }
+        }
+      }
+    },
+    "Contact Support" : {
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contactar a Soporte"
+          }
+        }
+      }
     },
     "Continue" : {
       "localizations" : {
@@ -54,6 +135,16 @@
       }
     },
     "Continue the onboarding process" : {
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuar el proceso de onboarding"
+          }
+        }
+      }
+    },
+    "Create Account" : {
 
     },
     "Displays the privacy policy" : {
@@ -97,7 +188,14 @@
       }
     },
     "Featured Avatars" : {
-
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avatars Especiales"
+          }
+        }
+      }
     },
     "Finish" : {
       "localizations" : {
@@ -118,6 +216,9 @@
           }
         }
       }
+    },
+    "Free" : {
+
     },
     "Get started" : {
       "localizations" : {
@@ -141,17 +242,6 @@
     },
     "Have " : {
 
-    },
-    "Have real conversations with AI generated responses." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ten conversaciones reales con personajes de IA"
-          }
-        }
-      }
     },
     "Image" : {
       "localizations" : {
@@ -196,52 +286,29 @@
     "Make your own " : {
 
     },
-    "Make your own avatars and chat with them!" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Crea tus propios personajes y habla con ellos"
-          }
-        }
-      }
-    },
     "My Avatars" : {
 
     },
-    "Navigate" : {
-      "extractionState" : "stale",
+    "NEW" : {
       "localizations" : {
         "es-419" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Navegar"
+            "value" : "NUEVO"
           }
         }
       }
-    },
-    "NEW" : {
-
     },
     "No avatars yet" : {
 
-    },
-    "Onboarding completed!" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "¡Onboarding completado!"
-          }
-        }
-      }
     },
     "OnShowCreateNewAvatarView" : {
 
     },
     "Popular" : {
+
+    },
+    "Premium" : {
 
     },
     "Privacy Policy" : {
@@ -263,6 +330,9 @@
           }
         }
       }
+    },
+    "Purchases" : {
+
     },
     "real conversations " : {
 
@@ -313,6 +383,9 @@
           }
         }
       }
+    },
+    "Version" : {
+
     },
     "We've set up everything for you to start chatting!" : {
 
