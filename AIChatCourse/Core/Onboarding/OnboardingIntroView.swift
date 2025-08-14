@@ -54,6 +54,7 @@ struct OnboardingIntroView: View {
         }
         .limitMaxDynamicTypeSize(dynamicTypeSize)
         .frame(maxHeight: .infinity)
+		.padding()
     }
     
     private var bottomSection: some View {

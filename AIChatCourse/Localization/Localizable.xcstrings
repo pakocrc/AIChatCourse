@@ -56,20 +56,27 @@
         "es-419" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "y chatea con ellos"
+            "value" : "y chatea con ellos\n\n"
           }
         }
       }
     },
     "App" : {
-
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App"
+          }
+        }
+      }
     },
     "avatars " : {
       "localizations" : {
         "es-419" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "avatars"
+            "value" : "avatars "
           }
         }
       }
@@ -145,7 +152,24 @@
       }
     },
     "Create Account" : {
-
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crear Cuenta"
+          }
+        }
+      }
+    },
+    "Create Avatar" : {
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crear Avatar"
+          }
+        }
+      }
     },
     "Displays the privacy policy" : {
       "localizations" : {
@@ -218,6 +242,16 @@
       }
     },
     "Free" : {
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gratis"
+          }
+        }
+      }
+    },
+    "Generate image" : {
 
     },
     "Get started" : {
@@ -241,7 +275,14 @@
       }
     },
     "Have " : {
-
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ten "
+          }
+        }
+      }
     },
     "Image" : {
       "localizations" : {
@@ -252,6 +293,12 @@
           }
         }
       }
+    },
+    "in the" : {
+
+    },
+    "is a" : {
+
     },
     "Link to privacy policy page" : {
       "localizations" : {
@@ -284,10 +331,44 @@
       }
     },
     "Make your own " : {
-
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crea tus propios "
+          }
+        }
+      }
     },
     "My Avatars" : {
-
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mis Avatars"
+          }
+        }
+      }
+    },
+    "Name" : {
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nombre"
+          }
+        }
+      }
+    },
+    "Name your avatar" : {
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elige un nombre"
+          }
+        }
+      }
     },
     "NEW" : {
       "localizations" : {
@@ -300,16 +381,34 @@
       }
     },
     "No avatars yet" : {
-
-    },
-    "OnShowCreateNewAvatarView" : {
-
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sin avatars aún"
+          }
+        }
+      }
     },
     "Popular" : {
-
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pupular"
+          }
+        }
+      }
     },
     "Premium" : {
-
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premium"
+          }
+        }
+      }
     },
     "Privacy Policy" : {
       "localizations" : {
@@ -332,13 +431,34 @@
       }
     },
     "Purchases" : {
-
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compras"
+          }
+        }
+      }
     },
     "real conversations " : {
-
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "conversaciones reales "
+          }
+        }
+      }
     },
     "Select a profile color" : {
-
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecciona un color de perfil"
+          }
+        }
+      }
     },
     "Settings" : {
       "localizations" : {
@@ -351,7 +471,14 @@
       }
     },
     "Setup complete!" : {
-
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¡Configuración completada!"
+          }
+        }
+      }
     },
     "Sign Out" : {
       "extractionState" : "manual",
@@ -384,11 +511,31 @@
         }
       }
     },
-    "Version" : {
+    "that is" : {
 
     },
-    "We've set up everything for you to start chatting!" : {
+    "The avatar" : {
 
+    },
+    "Version" : {
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Versión"
+          }
+        }
+      }
+    },
+    "We've set up everything for you to start chatting!" : {
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configuramos todo para que empieces a chatear"
+          }
+        }
+      }
     },
     "Welcome to the AI Chat onboarding" : {
       "localizations" : {
@@ -401,7 +548,14 @@
       }
     },
     "with AI generated responses." : {
-
+      "localizations" : {
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "con AI avatars reales"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

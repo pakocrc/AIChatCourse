@@ -39,22 +39,11 @@ struct OnboardingCompletedView: View {
     }
     
     private var bottomSection: some View {
-		ZStack {
-			if isCompletingProfileSetup {
-				ProgressView()
-			} else {
-				Text("Finish")
-					.frame(maxWidth: .infinity)
-			}
-		}
-		.callToAction()
-		.anyButton(.press) {
+		AsyncCallToActionButton(title: "Finish") {
 			onFinishButtonPressed()
 		}
-		.disabled(isCompletingProfileSetup)
 		.accessibilityLabel(Text("Finish the onboarding"))
 		.accessibilityHint(Text("Go to the main app"))
-		.padding()
     }
     
     private func onFinishButtonPressed() {
