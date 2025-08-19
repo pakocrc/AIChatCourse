@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ChatMessageModel: Codable {
+struct ChatMessageModel: Codable, Identifiable {
 	let id: String
 	let chatId: String
 	let authorId: String?
@@ -48,7 +48,7 @@ struct ChatMessageModel: Codable {
 			ChatMessageModel(
 				id: "msg3",
 				chatId: "2",
-				authorId: "user4",
+				authorId: "user1",
 				content: "Meeting at 3PM.",
 				seenByIds: nil,
 				dateCreated: formatter.date(from: "2025-08-02T09:30:00Z")
