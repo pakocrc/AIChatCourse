@@ -171,6 +171,9 @@
         }
       }
     },
+    "Delete Chat" : {
+
+    },
     "Displays the privacy policy" : {
       "localizations" : {
         "es-419" : {
@@ -450,6 +453,12 @@
         }
       }
     },
+    "Report User/Chat" : {
+
+    },
+    "Say something..." : {
+
+    },
     "Select a profile color" : {
       "localizations" : {
         "es-419" : {
@@ -517,6 +526,9 @@
     "The avatar" : {
 
     },
+    "Title" : {
+
+    },
     "Version" : {
       "localizations" : {
         "es-419" : {
@@ -546,6 +558,9 @@
           }
         }
       }
+    },
+    "What would you like to do?" : {
+
     },
     "with AI generated responses." : {
       "localizations" : {
