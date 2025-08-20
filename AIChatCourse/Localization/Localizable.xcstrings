@@ -277,6 +277,9 @@
         }
       }
     },
+    "Got it!" : {
+
+    },
     "Have " : {
       "localizations" : {
         "es-419" : {
@@ -392,6 +395,9 @@
           }
         }
       }
+    },
+    "Ok" : {
+
     },
     "Popular" : {
       "localizations" : {
@@ -524,9 +530,6 @@
 
     },
     "The avatar" : {
-
-    },
-    "Title" : {
 
     },
     "Version" : {

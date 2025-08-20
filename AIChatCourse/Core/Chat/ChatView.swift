@@ -5,7 +5,7 @@
 //  Created by Francisco Cordoba on 19/8/25.
 //
 
-import SwiftUI
+import SwiftUI 
 
 struct ChatView: View {
 	@State private var chatMessages: [ChatMessageModel] = ChatMessageModel.mocks
@@ -13,8 +13,10 @@ struct ChatView: View {
 	@State private var currentUser: UserModel? = .mock
 	
 	@State private var textFieldText: String = ""
-	@State private var presentChatSettings: Bool = false
 	@State private var scrollPosition: String?
+
+	@State private var presentChatSettings: AnyAppAlert?
+	@State private var alertInfo: AnyAppAlert?
 	
     var body: some View {
 		VStack {
@@ -28,23 +30,13 @@ struct ChatView: View {
 			ToolbarItem(placement: .topBarTrailing) {
 				Image(systemName: "ellipsis")
 					.padding(8)
-					.anyButton {
-						presentChatSettings = true
+					.anyButton(.press) {
+						displayChatSettings()
 					}
 			}
 		}
-		.confirmationDialog("Title", isPresented: $presentChatSettings) {
-			Button("Report User/Chat", role: .destructive) {
-				
-			}
-			Button("Delete Chat", role: .destructive) {
-				
-			}
-
-			Button("Cancel", role: .cancel) {
-				presentChatSettings = false
-			}
-		} message: { Text("What would you like to do?" ) }
+		.showCustomAlert(type: .confirmationDialog, alertInfo: $presentChatSettings)
+		.showCustomAlert(type: .alert, alertInfo: $alertInfo)
 	}
 	
 	private var chatViewSection: some View {
@@ -100,22 +92,60 @@ struct ChatView: View {
 	private func onSendButtonTapped() {
 		guard let currentUser = currentUser else { return }
 		
-		let content = textFieldText
-		
-		let newChatMessage = ChatMessageModel(
-			id: UUID().uuidString,
-			chatId: UUID().uuidString,
-			authorId: currentUser.userId,
-			content: content,
-			seenByIds: nil,
-			dateCreated: .now
+		do {
+			try TextValidationHelper.validateTextFieldText(text: textFieldText)
+			
+			let newChatMessage = ChatMessageModel(
+				id: UUID().uuidString,
+				chatId: UUID().uuidString,
+				authorId: currentUser.userId,
+				content: textFieldText,
+				seenByIds: nil,
+				dateCreated: .now
+			)
+			
+			chatMessages.append(newChatMessage)
+			
+			scrollPosition = newChatMessage.id
+			
+			textFieldText = ""
+			
+		} catch let validationError as TextValidationHelper.TextValidationError {
+			alertInfo = AnyAppAlert(
+				title: validationError.rawValue,
+				message: validationError.localizedDescription,
+				buttons: {
+					AnyView(
+						Button("Got it!") {
+							
+						}
+					)
+				}
+			)
+			
+		} catch {
+			alertInfo = AnyAppAlert(error: error)
+		}
+	}
+	
+	private func displayChatSettings() {
+		presentChatSettings = AnyAppAlert(
+			title: "Settings",
+			message: "What would you like to do?",
+			buttons: {
+				AnyView(
+					Group {
+						Button("Report User/Chat", role: .destructive) {
+							
+						}
+						
+						Button("Delete Chat", role: .destructive) {
+							
+						}
+					}
+				)
+			}
 		)
-		
-		chatMessages.append(newChatMessage)
-		
-		scrollPosition = newChatMessage.id
-		
-		textFieldText = ""
 	}
 }
 
