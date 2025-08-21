@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ChatView: View {
 	@State private var chatMessages: [ChatMessageModel] = ChatMessageModel.mocks
-	@State private var avatar: AvatarModel? = .mock
+	@State var avatar: AvatarModel? = .mock
 	@State private var currentUser: UserModel? = .mock
 	
 	@State private var textFieldText: String = ""
@@ -18,15 +18,33 @@ struct ChatView: View {
 	@State private var presentChatSettings: AnyAppAlert?
 	@State private var alertInfo: AnyAppAlert?
 	
+	@State private var showProfileModal: Bool = false
+	
     var body: some View {
 		VStack {
 			chatViewSection
 			
 			textFieldSection
 		}
-		.navigationTitle(avatar?.name ?? "Chat")
+		.navigationTitle(avatar?.name == nil ? "Chat" : "")
 		.toolbarTitleDisplayMode(.inline)
 		.toolbar {
+			if let avatar {
+				ToolbarItem(placement: .topBarLeading) {
+					HStack(alignment: .center) {
+						ImageLoaderView(imageUrlString: avatar.profileImageUrlString ?? "")
+							.frame(width: 45, height: 45)
+							.clipShape(Circle())
+						
+						Text(avatar.name ?? "Chat")
+							.font(.title2)
+							.fontWeight(.medium)
+					}
+					.anyButton(.plain) {
+						showProfileModal = true
+					}
+				}
+			}
 			ToolbarItem(placement: .topBarTrailing) {
 				Image(systemName: "ellipsis")
 					.padding(8)
@@ -37,6 +55,15 @@ struct ChatView: View {
 		}
 		.showCustomAlert(type: .confirmationDialog, alertInfo: $presentChatSettings)
 		.showCustomAlert(type: .alert, alertInfo: $alertInfo)
+		.showModal(showModal: $showProfileModal) {
+			if let avatar {
+				ProfileModalView(avatar: avatar) {
+					showProfileModal = false
+				}
+				.padding()
+				.transition(AnyTransition.move(edge: .top).combined(with: .opacity))
+			}
+		}
 	}
 	
 	private var chatViewSection: some View {
@@ -160,4 +187,10 @@ struct ChatView: View {
 		ChatView()
 	}
 	.preferredColorScheme(.dark)
+}
+
+#Preview("Without Image") {
+	NavigationStack {
+		ChatView(avatar: nil)
+	}
 }

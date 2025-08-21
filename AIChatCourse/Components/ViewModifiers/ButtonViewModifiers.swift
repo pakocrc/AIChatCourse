@@ -39,7 +39,7 @@ extension View {
 		case .highlight:
 			self.highlightOnPress(action: action)
 		case .plain:
-			self.buttonStyle(PlainButtonStyle())
+			self.plainButtonOnPress(action: action)
 		}
 	}
 	
@@ -60,6 +60,15 @@ extension View {
 		}
 		.buttonStyle(PressableButtonStyle())
 	}
+	
+	private func plainButtonOnPress(action: @escaping () -> Void) -> some View {
+		Button {
+			action()
+		} label: {
+			self
+		}
+		.buttonStyle(PlainButtonStyle())
+	}
 }
 
 #Preview {
@@ -79,6 +88,10 @@ extension View {
 		Text("Scale on Press 4!")
 			.callToAction()
 			.anyButton(.press) { }
+			.padding()
+
+		Text("Plain button!")
+			.anyButton(.plain) { debugPrint("a") }
 			.padding()
 	}
 }
