@@ -58,6 +58,9 @@ struct PrimaryCellView: View {
                 imageUrlString: Constants.randomImageUrl
             )
             .frame(width: 300, height: 200, alignment: .center)
+			.anyButton(.highlight) {
+				debugPrint("Button pressed!")
+			}
             
             PrimaryCellView(
                 title: "Title",

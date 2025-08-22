@@ -15,14 +15,17 @@ struct ProfileView: View {
 	@State private var showCreateNewAvatarView: Bool = false
 	@State private var isLoading: Bool = true
 	
+	@State private var path: [NavigationPathOption] = []
+	
 	var body: some View {
-		NavigationStack {
+		NavigationStack(path: $path) {
 			List {
 				profileInfoSection
 				
 				myAvatarsSection
 			}
 			.navigationTitle("Profile")
+			.navigationDestinationForCoreModule()
 			.toolbar {
 				ToolbarItem(placement: .topBarTrailing) {
 					settingsButton
@@ -66,14 +69,14 @@ struct ProfileView: View {
 					)
 				}
 			} else {
-				ForEach(myAvatars, id: \.self) { item in
+				ForEach(myAvatars, id: \.self) { avatar in
 					PopularCellView(
-						title: item.name ?? "Unknown",
+						title: avatar.name ?? "Unknown",
 						subtitle: nil,
-						imageUrlString: item.profileImageUrlString
+						imageUrlString: avatar.profileImageUrlString
 					)
 					.anyButton(.highlight) {
-						
+						onAvatarPressed(avatar)
 					}
 				}
 				.onDelete(perform: { indexSet in
@@ -109,6 +112,12 @@ struct ProfileView: View {
 	}
 	
 	// MARK: - Functions
+	private func loadData() async {
+		try? await Task.sleep(for: .seconds(2))
+		myAvatars = AvatarModel.mocks
+		isLoading = false
+	}
+
 	private func onSettingsButtonTap() {
 		showSettingsView = true
 	}
@@ -122,10 +131,8 @@ struct ProfileView: View {
 		myAvatars.remove(at: index)
 	}
 	
-	private func loadData() async {
-		try? await Task.sleep(for: .seconds(2))
-		myAvatars = AvatarModel.mocks
-		isLoading = false
+	private func onAvatarPressed(_ avatar: AvatarModel) {
+		path.append(.chat(avatar: avatar))
 	}
 }
 
