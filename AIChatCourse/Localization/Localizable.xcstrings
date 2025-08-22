@@ -1,15 +1,22 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "@ Created by Francisco Cordoba 2025" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es-419" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "@ Creado por Francisco Córdoba 2025"
+            "value" : "@ Creado por Francisco Córdoba, 2025"
           }
         }
       }
+    },
+    "@Created by Francisco Cordoba, 2025" : {
+
     },
     "Account" : {
       "localizations" : {
@@ -100,6 +107,9 @@
           }
         }
       }
+    },
+    "Chat" : {
+
     },
     "Chats" : {
       "localizations" : {

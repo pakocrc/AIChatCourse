@@ -11,6 +11,7 @@ struct CategoryCellView: View {
     var title: String?
     var imageUrlString: String?
     var cornerRadius: CGFloat = 16
+	var customFont: Font = .title3
     
     var body: some View {
         ZStack {
@@ -28,7 +29,7 @@ struct CategoryCellView: View {
                 if let title {
                     Text(title.capitalized)
                         .foregroundStyle(.white)
-                        .font(.title3)
+                        .font(customFont)
                         .fontWeight(.semibold)
                 }
             }

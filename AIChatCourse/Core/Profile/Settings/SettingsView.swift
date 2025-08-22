@@ -111,7 +111,7 @@ struct SettingsView: View {
 			Text("App")
 			
 		} footer: {
-			Text("@ Created by Francisco Cordoba 2025")
+			Text("@Created by Francisco Cordoba, 2025")
 				.foregroundStyle(.secondary)
 				.font(.caption)
 				.fontWeight(.medium)

@@ -18,4 +18,15 @@ enum CharacterOption: String, Hashable, CaseIterable {
 			return false
 		}
 	}
+	
+	var pluralized: String {
+		switch self {
+		case .man:
+			return "men"
+		case .woman:
+			return "momen"
+		default:
+			return "\(self.rawValue)s"
+		}
+	}
 }

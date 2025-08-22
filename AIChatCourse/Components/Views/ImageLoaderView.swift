@@ -22,7 +22,7 @@ struct ImageLoaderView: View {
 						case .empty:
 							ProgressView()
 						case .failure(let error):
-							Image(systemName: "photo.stack")
+							Image(systemName: "photo")
 								.resizable()
 								.scaledToFit()
 								.allowsHitTesting(false)

@@ -31,9 +31,12 @@ extension View {
     
     func gradientBackgroundForText() -> some View {
         self.background(
-            LinearGradient(colors: [Color.black.opacity(0.1),
+            LinearGradient(colors: [Color.black.opacity(0.05),
+									Color.black.opacity(0.1),
+									Color.black.opacity(0.2),
                                     Color.black.opacity(0.3),
-                                    Color.black.opacity(0.4)],
+                                    Color.black.opacity(0.4),
+									Color.black.opacity(0.5)],
                            startPoint: .top,
                            endPoint: .bottom)
         )

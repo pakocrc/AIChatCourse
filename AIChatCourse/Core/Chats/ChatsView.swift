@@ -14,19 +14,20 @@ struct ChatsView: View {
 		NavigationStack {
 			List {
 				ForEach(chats, id: \.id) { chat in
-					ChatRowBuilder(
-						chat: chat,
-						getAvatar: {
-							try? await Task.sleep(for: .seconds(Int.random(in: 1...5)))
-							return AvatarModel.mock
-						},
-						getLastChatMessage: {
-							try? await Task.sleep(for: .seconds(Int.random(in: 1...5)))
-							return ChatMessageModel.mock
-						}
-					)
-					.anyButton(.highlight) {
-						
+					NavigationLink {
+						ChatView(avatar: AvatarModel.mock)
+					} label: {
+						ChatRowBuilder(
+							chat: chat,
+							getAvatar: {
+								try? await Task.sleep(for: .seconds(Int.random(in: 1...5)))
+								return AvatarModel.mock
+							},
+							getLastChatMessage: {
+								try? await Task.sleep(for: .seconds(Int.random(in: 1...5)))
+								return ChatMessageModel.mock
+							}
+						)
 					}
 				}
 			}
