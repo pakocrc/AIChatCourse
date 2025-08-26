@@ -11,6 +11,8 @@ struct CategoryListView: View {
 	var category: CharacterOption = .alien
 	var imageName: String = Constants.randomImageUrl
 	
+	@Binding var path: [NavigationPathOption]
+	
 	@State private var avatars: [AvatarModel] = AvatarModel.mocks
 	
 	var body: some View {
@@ -23,14 +25,14 @@ struct CategoryListView: View {
 			)
 			.removelistRowFormatting()
 			
-			ForEach(avatars, id: \.avatarId) { item in
+			ForEach(avatars, id: \.avatarId) { avatar in
 				PopularCellView(
-					title: item.name,
-					subtitle: item.characterDescription?.characterDescription,
+					title: avatar.name,
+					subtitle: avatar.characterDescription?.characterDescription,
 					imageUrlString: Constants.randomImageUrl
 				)
 				.anyButton(.highlight) {
-					
+					onAvatarPressed(avatar)
 				}
 			}
 			.removelistRowFormatting()
@@ -38,8 +40,13 @@ struct CategoryListView: View {
 		.ignoresSafeArea()
 		.listStyle(PlainListStyle())
 	}
+	
+	// MARK: - Actions
+	private func onAvatarPressed(_ avatar: AvatarModel) {
+		path.append(.chat(avatar: avatar))
+	}
 }
 
 #Preview {
-    CategoryListView()
+	CategoryListView(path: .constant([]))
 }

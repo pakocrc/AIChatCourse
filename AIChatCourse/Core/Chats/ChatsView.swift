@@ -33,7 +33,7 @@ struct ChatsView: View {
 				}
 			}
 			.navigationTitle("Chats")
-			.navigationDestinationForCoreModule()
+			.navigationDestinationForCoreModule(path: $path)
 		}
 	}
 	

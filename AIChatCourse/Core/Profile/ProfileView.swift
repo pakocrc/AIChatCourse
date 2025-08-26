@@ -25,7 +25,7 @@ struct ProfileView: View {
 				myAvatarsSection
 			}
 			.navigationTitle("Profile")
-			.navigationDestinationForCoreModule()
+			.navigationDestinationForCoreModule(path: $path)
 			.toolbar {
 				ToolbarItem(placement: .topBarTrailing) {
 					settingsButton

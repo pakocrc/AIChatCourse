@@ -7,25 +7,6 @@
 
 import SwiftUI
 
-enum NavigationPathOption: Hashable {
-	case chat(avatar: AvatarModel)
-	case category(category: CharacterOption)
-}
-
-extension View {
-	func navigationDestinationForCoreModule() -> some View {
-		self
-			.navigationDestination(for: NavigationPathOption.self) { newValue in
-				switch newValue {
-				case .chat(let avatar):
-					ChatView(avatar: avatar)
-				case .category(let category):
-					CategoryListView(category: category)
-				}
-			}
-	}
-}
-
 struct ExploreView: View {
     
     private var featuredAvatars: [AvatarModel] = AvatarModel.mocks
@@ -46,10 +27,10 @@ struct ExploreView: View {
             }
             
             .navigationTitle("Explore")
-			.navigationDestinationForCoreModule()
+			.navigationDestinationForCoreModule(path: $path)
         }
     }
-    
+
 	// MARK: - View Components
     private var featuredSection: some View {
         Section {
