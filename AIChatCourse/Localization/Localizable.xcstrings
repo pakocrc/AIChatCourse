@@ -469,6 +469,9 @@
         }
       }
     },
+    "Recents" : {
+
+    },
     "Report User/Chat" : {
 
     },
@@ -584,6 +587,12 @@
           }
         }
       }
+    },
+    "Your chats will appear here" : {
+
+    },
+    "Your recent chats will appear here" : {
+
     }
   },
   "version" : "1.0"
