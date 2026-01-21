@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		CDDDA5482F206BE3009A12ED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CDDDA5472F206BE3009A12ED /* GoogleService-Info.plist */; };
+		CDDDA54B2F206C90009A12ED /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CDDDA54A2F206C90009A12ED /* FirebaseAuth */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		972ECE362E39067200A9951A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +32,7 @@
 		972ECE282E39067100A9951A /* AIChatCourse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AIChatCourse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		972ECE352E39067200A9951A /* AIChatCourseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AIChatCourseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		972ECE3F2E39067200A9951A /* AIChatCourseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AIChatCourseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDDDA5472F206BE3009A12ED /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -52,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDDDA54B2F206C90009A12ED /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +82,7 @@
 		972ECE1F2E39067100A9951A = {
 			isa = PBXGroup;
 			children = (
+				CDDDA5472F206BE3009A12ED /* GoogleService-Info.plist */,
 				972ECE2A2E39067100A9951A /* AIChatCourse */,
 				972ECE382E39067200A9951A /* AIChatCourseTests */,
 				972ECE422E39067200A9951A /* AIChatCourseUITests */,
@@ -113,6 +121,7 @@
 			);
 			name = AIChatCourse;
 			packageProductDependencies = (
+				CDDDA54A2F206C90009A12ED /* FirebaseAuth */,
 			);
 			productName = AIChatCourse;
 			productReference = 972ECE282E39067100A9951A /* AIChatCourse.app */;
@@ -197,6 +206,9 @@
 			);
 			mainGroup = 972ECE1F2E39067100A9951A;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				CDDDA5492F206C90009A12ED /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 972ECE292E39067100A9951A /* Products */;
 			projectDirPath = "";
@@ -214,6 +226,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDDDA5482F206BE3009A12ED /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,7 +437,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9B334YL85T;
+				DEVELOPMENT_TEAM = A9KLKUW5K4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "AI Chat";
@@ -459,7 +472,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9B334YL85T;
+				DEVELOPMENT_TEAM = A9KLKUW5K4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "AI Chat";
@@ -599,6 +612,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CDDDA5492F206C90009A12ED /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.8.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CDDDA54A2F206C90009A12ED /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CDDDA5492F206C90009A12ED /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 972ECE202E39067100A9951A /* Project object */;
 }
