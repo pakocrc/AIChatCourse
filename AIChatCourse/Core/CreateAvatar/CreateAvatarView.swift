@@ -115,7 +115,7 @@ struct CreateAvatarView: View {
 			Circle()
 				.foregroundStyle(.gray)
 				.overlay(content: {
-					ImageLoaderView(imageUrlString: imageUrlString ?? "", resultingImage: { image in
+					ImageLoaderView(imageUrlString: imageUrlString ?? "", resultingImage: { _ in
 						// image
 						isFormComplete = true
 						isGeneratingImage = false

@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CDDDA5482F206BE3009A12ED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CDDDA5472F206BE3009A12ED /* GoogleService-Info.plist */; };
+		CD3235242F21BC16005BA3B0 /* SignInAppleAsync in Frameworks */ = {isa = PBXBuildFile; productRef = CD3235232F21BC16005BA3B0 /* SignInAppleAsync */; };
+		CD774DAE2F21CE4C00DEF904 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD774DAD2F21CE4C00DEF904 /* GoogleService-Info.plist */; };
 		CDDDA54B2F206C90009A12ED /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CDDDA54A2F206C90009A12ED /* FirebaseAuth */; };
 /* End PBXBuildFile section */
 
@@ -32,7 +33,7 @@
 		972ECE282E39067100A9951A /* AIChatCourse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AIChatCourse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		972ECE352E39067200A9951A /* AIChatCourseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AIChatCourseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		972ECE3F2E39067200A9951A /* AIChatCourseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AIChatCourseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CDDDA5472F206BE3009A12ED /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CD774DAD2F21CE4C00DEF904 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -58,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD3235242F21BC16005BA3B0 /* SignInAppleAsync in Frameworks */,
 				CDDDA54B2F206C90009A12ED /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -82,7 +84,7 @@
 		972ECE1F2E39067100A9951A = {
 			isa = PBXGroup;
 			children = (
-				CDDDA5472F206BE3009A12ED /* GoogleService-Info.plist */,
+				CD774DAD2F21CE4C00DEF904 /* GoogleService-Info.plist */,
 				972ECE2A2E39067100A9951A /* AIChatCourse */,
 				972ECE382E39067200A9951A /* AIChatCourseTests */,
 				972ECE422E39067200A9951A /* AIChatCourseUITests */,
@@ -122,6 +124,7 @@
 			name = AIChatCourse;
 			packageProductDependencies = (
 				CDDDA54A2F206C90009A12ED /* FirebaseAuth */,
+				CD3235232F21BC16005BA3B0 /* SignInAppleAsync */,
 			);
 			productName = AIChatCourse;
 			productReference = 972ECE282E39067100A9951A /* AIChatCourse.app */;
@@ -208,6 +211,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				CDDDA5492F206C90009A12ED /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				CD3235222F21BC16005BA3B0 /* XCRemoteSwiftPackageReference "SignInAppleAsync" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 972ECE292E39067100A9951A /* Products */;
@@ -226,7 +230,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDDDA5482F206BE3009A12ED /* GoogleService-Info.plist in Resources */,
+				CD774DAE2F21CE4C00DEF904 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,9 +439,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AIChatCourse/AIChatCourse.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = A9KLKUW5K4;
+				DEVELOPMENT_TEAM = 9B334YL85T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "AI Chat";
@@ -453,8 +459,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.automata.AIChatCourse;
+				PRODUCT_BUNDLE_IDENTIFIER = com.automata.AIChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -470,9 +477,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AIChatCourse/AIChatCourse.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = A9KLKUW5K4;
+				DEVELOPMENT_TEAM = 9B334YL85T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "AI Chat";
@@ -488,8 +497,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.automata.AIChatCourse;
+				PRODUCT_BUNDLE_IDENTIFIER = com.automata.AIChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -614,6 +624,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CD3235222F21BC16005BA3B0 /* XCRemoteSwiftPackageReference "SignInAppleAsync" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:SwiftfulThinking/SignInAppleAsync.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.2;
+			};
+		};
 		CDDDA5492F206C90009A12ED /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -625,6 +643,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CD3235232F21BC16005BA3B0 /* SignInAppleAsync */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CD3235222F21BC16005BA3B0 /* XCRemoteSwiftPackageReference "SignInAppleAsync" */;
+			productName = SignInAppleAsync;
+		};
 		CDDDA54A2F206C90009A12ED /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CDDDA5492F206C90009A12ED /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

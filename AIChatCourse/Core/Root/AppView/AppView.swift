@@ -23,6 +23,13 @@ struct AppView: View {
         .task {
             await checkAuthStatus()
         }
+        .onChange(of: appState.showTabBar, { _, showTabBar in
+            if !showTabBar {
+                Task {
+                    await checkAuthStatus()
+                }
+            }
+        })
         .environment(appState)
         .environment(\.authService, authService)
     }

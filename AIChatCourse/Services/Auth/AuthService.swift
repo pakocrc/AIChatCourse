@@ -10,4 +10,7 @@ import FirebaseAuth
 protocol AuthService {
     func getAuthenticatedUser() -> UserAuthInfo?
     func signInAnonymously() async throws -> (user: UserAuthInfo, isNewUser: Bool)
+    func signInWithApple() async throws -> (user: UserAuthInfo, isNewUser: Bool)
+    func signOut() throws
+    func deleteAccount() async throws
 }

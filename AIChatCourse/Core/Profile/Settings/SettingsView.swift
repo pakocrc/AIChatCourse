@@ -9,17 +9,21 @@ import SwiftUI
 
 struct SettingsView: View {
 	@Environment(AppState.self) private var appState
+    @Environment(\.authService) private var authService
 	@Environment(\.dismiss) private var dismiss
-	
+
 	@State var isPremium: Bool = false
 	@State var isAnnonymousUser: Bool = true
 	@State var createAccountSheetPresented: Bool = false
-	
+    @State var showAlert: AnyAppAlert?
+
 	var body: some View {
 		NavigationStack {
 			List {
-				accountSection
-				
+                if !isAnnonymousUser {
+                    accountSection
+                }
+
 				purchasesSection
 				
 				appSection
@@ -27,6 +31,7 @@ struct SettingsView: View {
 				signOutSection
 			}
 			.navigationTitle("Settings")
+            .showCustomAlert(type: .alert, alertInfo: $showAlert)
 			.toolbar {
 				ToolbarItem(placement: .topBarTrailing) {
 					Button {
@@ -36,20 +41,33 @@ struct SettingsView: View {
 					}
 				}
 			}
-			.sheet(isPresented: $createAccountSheetPresented) {
-				CreateAccountView()
-					.presentationDetents([.medium])
-			}
+            .sheet(isPresented: $createAccountSheetPresented, onDismiss: {
+                setAnnonymousAccountStatus()
+            }, content: {
+                CreateAccountView()
+                    .presentationDetents(
+                        [.medium]
+                    )
+            })
+            .onAppear {
+                setAnnonymousAccountStatus()
+            }
 		}
 	}
 	
 	// MARK: - View Components
 	private var accountSection: some View {
 		Section {
-			Text("Profile")
-				.font(.callout)
-				.fontWeight(.regular)
-			
+            Text("Profile")
+                .anyButton {
+
+                }
+
+            Text("Delete Account")
+                .anyButton {
+                    onDeleteUserPressed()
+                }
+
 		} header: {
 			Text("Account")
 		}
@@ -59,11 +77,8 @@ struct SettingsView: View {
 		Section {
 			HStack {
 				Text("Account Status")
-					.font(.callout)
-					.fontWeight(.regular)
 				Spacer()
 				Text(isPremium ? "Premium" : "Free")
-					.font(.callout)
 					.fontWeight(.medium)
 					.foregroundStyle(.secondary)
 			}
@@ -76,31 +91,22 @@ struct SettingsView: View {
 		Section {
 			HStack {
 				Text("Version")
-					.font(.callout)
-					.fontWeight(.regular)
 				Spacer()
 				Text(Bundle.main.appVersion)
-					.font(.callout)
 					.foregroundStyle(.secondary)
 					.fontWeight(.medium)
 			}
 			
 			HStack {
 				Text("Build Number")
-					.font(.callout)
-					.fontWeight(.regular)
 				Spacer()
 				Text(Bundle.main.buildNumber)
-					.font(.callout)
 					.foregroundStyle(.secondary)
 					.fontWeight(.medium)
 			}
 			
 			HStack {
 				Text("Contact Support")
-					.font(.callout)
-					.fontWeight(.regular)
-					.foregroundStyle(.accent)
 					.frame(maxWidth: .infinity, alignment: .leading)
 			}
 			.anyButton(.highlight) {
@@ -118,37 +124,89 @@ struct SettingsView: View {
 		}
 	}
 	
-	private var signOutSection: some View {
-		if isAnnonymousUser {
-			Text("Sign Out")
-				.foregroundStyle(.accent)
-				.font(.headline)
-				.fontWeight(.medium)
-				.frame(maxWidth: .infinity)
-				.anyButton(.press) {
-					signOut()
-				}
-		} else {
-			Text("Create Account")
-				.foregroundStyle(.blue)
-				.font(.headline)
-				.fontWeight(.medium)
-				.frame(maxWidth: .infinity)
-				.anyButton(.press) {
-					onCreateAccountButtonPressed()
-				}
-		}
-	}
+    private var signOutSection: some View {
+        if isAnnonymousUser {
+            Text("Create Account")
+                .foregroundStyle(.blue)
+                .font(.headline)
+                .fontWeight(.medium)
+                .frame(maxWidth: .infinity)
+                .anyButton(.press) {
+                    onCreateAccountButtonPressed()
+                }
+        } else {
+            Text("Sign Out")
+                .foregroundStyle(.accent)
+                .font(.headline)
+                .fontWeight(.medium)
+                .frame(maxWidth: .infinity)
+                .anyButton(.press) {
+                    onSignOutPressed()
+                }
+        }
+    }
 	
 	// MARK: - Functions
 	private func onCreateAccountButtonPressed() {
 		createAccountSheetPresented = true
 	}
-	
-	private func signOut() {
-		dismiss()
-		appState.updateViewState(showTabBar: false)
+
+    private func setAnnonymousAccountStatus() {
+        print("User: \(authService.getAuthenticatedUser()?.uid ?? "no user")")
+
+        guard let isAnonymous = authService.getAuthenticatedUser()?.isAnonymous, !isAnonymous else {
+            isAnnonymousUser = true
+            return
+        }
+
+        isAnnonymousUser = false
+    }
+
+	private func onSignOutPressed() {
+        do {
+            try authService.signOut()
+            print("Signed out successfully!")
+            dismissScreen()
+
+        } catch {
+            print("Error signing out: \(error.localizedDescription)")
+            showAlert = AnyAppAlert(error: error)
+        }
 	}
+
+    private func onDeleteUserPressed() {
+        showAlert = AnyAppAlert(
+            title: "Warning",
+            message: "This action cannot be undone. Are you sure you want to delete your account?",
+            buttons: {
+                AnyView(
+                    Button("Delete", role: .destructive) {
+                        deleteUserConfirmed()
+                    }
+                )
+            }
+        )
+    }
+
+    private func deleteUserConfirmed() {
+        Task {
+            do {
+                try await authService.deleteAccount()
+                print("Account deleted successfully!")
+
+                dismissScreen()
+
+            } catch {
+                print("Error deleting account: \(error.localizedDescription)")
+                showAlert = AnyAppAlert(error: error)
+            }
+        }
+    }
+
+    private func dismissScreen() {
+        dismiss()
+        appState.updateViewState(showTabBar: false)
+    }
 }
 
 #Preview {

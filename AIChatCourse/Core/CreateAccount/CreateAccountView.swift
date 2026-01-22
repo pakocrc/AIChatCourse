@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct CreateAccountView: View {
+    @Environment(\.authService) var authService
+    @Environment(\.dismiss) var dismiss
 	var title: String = "Create Account"
 	var subtitle: String = "Don't lose your data! Connect to an SSO provider to save your account information."
-	
+    var onDidSignIn: ((_ isNewUser: Bool) -> Void)?
+
     var body: some View {
 		VStack(alignment: .leading, spacing: 20) {
 			Text(title)
@@ -32,11 +35,27 @@ struct CreateAccountView: View {
 		)
 		.frame(height: 50)
 		.anyButton(.press, action: {
-			
+            onSignInWithAppleButtonTap()
 		})
 		.padding()
 		
 		Spacer()
+    }
+
+    private func onSignInWithAppleButtonTap() {
+        Task {
+            do {
+                let user = try await authService.signInWithApple()
+                print("Signed in with Apple!")
+
+                onDidSignIn?(user.isNewUser)
+
+                dismiss()
+
+            } catch {
+                print("Error signing in with Apple. Error: \(error.localizedDescription)")
+            }
+        }
     }
 }
 
@@ -44,11 +63,11 @@ struct CreateAccountView: View {
 	VStack {
 		CreateAccountView(
 			title: "Sign In",
-			subtitle: "Already have an account? Sign in instead."
+			subtitle: "Already have an account? Sign in instead.",
+            onDidSignIn: { _ in }
 		)
 		
 		CreateAccountView()
-		
+            .background(Color.blue)
 	}
-	.background(Color.blue)
 }
