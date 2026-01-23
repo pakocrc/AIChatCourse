@@ -209,9 +209,26 @@ struct SettingsView: View {
     }
 }
 
-#Preview {
+#Preview("Signed in") {
 	NavigationStack {
 		SettingsView()
+            .environment(\.authService, MockAuthService(currentUser: UserAuthInfo.mock(isAnonymous: false)) )
 			.environment(AppState())
 	}
+}
+
+#Preview("Anonymous") {
+    NavigationStack {
+        SettingsView()
+            .environment(\.authService, MockAuthService(currentUser: UserAuthInfo.mock(isAnonymous: true)) )
+            .environment(AppState())
+    }
+}
+
+#Preview("Not Auth") {
+    NavigationStack {
+        SettingsView()
+            .environment(\.authService, MockAuthService(currentUser: nil) )
+            .environment(AppState())
+    }
 }
