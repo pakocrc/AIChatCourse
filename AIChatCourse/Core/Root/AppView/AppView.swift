@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AppView: View {
     @Environment(AuthManager.self) private var authManager
+    @Environment(UserManager.self) private var userManager
     @State var appState: AppState = .init()
 
     var body: some View {
@@ -39,6 +40,17 @@ struct AppView: View {
             // User is authenticated
             print("[AppView] User is authenticated: \(user.uid)")
 
+            do {
+                try await userManager.logIn(userAuthInfo: user, isNewUser: false)
+
+            } catch {
+                // Failed to store in the DB
+                print("[AppView] Error saving user to the database: \(error)")
+
+                try? await Task.sleep(for: .seconds(3))
+                await checkAuthStatus()
+            }
+
         } else {
             // User is not authenticated
             do {
@@ -46,8 +58,12 @@ struct AppView: View {
                 let result = try await authManager.signInAnonymously()
                 print("[AppView] Sign In Anonymous successful: \(result)")
 
+                try await userManager.logIn(userAuthInfo: result.user, isNewUser: result.isNewUser)
+
             } catch {
                 print("[AppView] Error signing in anonymously: \(error)")
+                try? await Task.sleep(for: .seconds(3))
+                await checkAuthStatus()
             }
         }
     }

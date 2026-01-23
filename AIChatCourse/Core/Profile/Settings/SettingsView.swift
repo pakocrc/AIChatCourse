@@ -92,7 +92,7 @@ struct SettingsView: View {
 			HStack {
 				Text("Version")
 				Spacer()
-				Text(Bundle.main.appVersion)
+                Text(Utilities.appVersion)
 					.foregroundStyle(.secondary)
 					.fontWeight(.medium)
 			}

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CD3235242F21BC16005BA3B0 /* SignInAppleAsync in Frameworks */ = {isa = PBXBuildFile; productRef = CD3235232F21BC16005BA3B0 /* SignInAppleAsync */; };
 		CD774DAE2F21CE4C00DEF904 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD774DAD2F21CE4C00DEF904 /* GoogleService-Info.plist */; };
+		CD9732942F23AB5E00C12552 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CD9732932F23AB5E00C12552 /* FirebaseFirestore */; };
 		CDDDA54B2F206C90009A12ED /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CDDDA54A2F206C90009A12ED /* FirebaseAuth */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +62,7 @@
 			files = (
 				CD3235242F21BC16005BA3B0 /* SignInAppleAsync in Frameworks */,
 				CDDDA54B2F206C90009A12ED /* FirebaseAuth in Frameworks */,
+				CD9732942F23AB5E00C12552 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +90,7 @@
 				972ECE2A2E39067100A9951A /* AIChatCourse */,
 				972ECE382E39067200A9951A /* AIChatCourseTests */,
 				972ECE422E39067200A9951A /* AIChatCourseUITests */,
+				CD9732922F23AB5E00C12552 /* Frameworks */,
 				972ECE292E39067100A9951A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -100,6 +103,13 @@
 				972ECE3F2E39067200A9951A /* AIChatCourseUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		CD9732922F23AB5E00C12552 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,6 +135,7 @@
 			packageProductDependencies = (
 				CDDDA54A2F206C90009A12ED /* FirebaseAuth */,
 				CD3235232F21BC16005BA3B0 /* SignInAppleAsync */,
+				CD9732932F23AB5E00C12552 /* FirebaseFirestore */,
 			);
 			productName = AIChatCourse;
 			productReference = 972ECE282E39067100A9951A /* AIChatCourse.app */;
@@ -647,6 +658,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CD3235222F21BC16005BA3B0 /* XCRemoteSwiftPackageReference "SignInAppleAsync" */;
 			productName = SignInAppleAsync;
+		};
+		CD9732932F23AB5E00C12552 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CDDDA5492F206C90009A12ED /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
 		};
 		CDDDA54A2F206C90009A12ED /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;

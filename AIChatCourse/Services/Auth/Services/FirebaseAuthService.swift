@@ -13,7 +13,7 @@ struct FirebaseAuthService: AuthService {
 
     func addAuthenticatedUserListener(onListenerAttached: (any NSObjectProtocol) -> Void) -> AsyncStream<UserAuthInfo?> {
         AsyncStream { continuation in
-            let listener = Auth.auth().addStateDidChangeListener { auth, currentUser in
+            let listener = Auth.auth().addStateDidChangeListener { _, currentUser in
                 if let currentUser {
                     let user = UserAuthInfo(user: currentUser)
                     continuation.yield(user)
@@ -56,8 +56,8 @@ struct FirebaseAuthService: AuthService {
                 return result.asAuthInfo
                 
             } catch let error as NSError {
-                print("[FirebaseAuthService] Failed to link existing anonymous account: \(error)")
-                
+                print("[FirebaseAuthService] Failed to link existing anonymous account: \(error.localizedDescription)")
+
                 let authError = AuthErrorCode(rawValue: error.code)
                 switch authError {
                 case .providerAlreadyLinked, .credentialAlreadyInUse:
