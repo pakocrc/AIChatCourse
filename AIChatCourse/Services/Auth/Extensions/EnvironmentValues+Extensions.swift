@@ -7,6 +7,6 @@
 
 import SwiftUI
 
-extension EnvironmentValues {
-    @Entry var authService: AuthService = FirebaseAuthService()
-}
+//extension EnvironmentValues {
+//    @Entry var authService: AuthService = FirebaseAuthService()
+//}

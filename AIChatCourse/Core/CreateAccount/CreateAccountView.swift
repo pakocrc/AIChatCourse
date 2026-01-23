@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CreateAccountView: View {
-    @Environment(\.authService) var authService
+    @Environment(AuthManager.self) private var authManager
     @Environment(\.dismiss) var dismiss
 	var title: String = "Create Account"
 	var subtitle: String = "Don't lose your data! Connect to an SSO provider to save your account information."
@@ -45,15 +45,15 @@ struct CreateAccountView: View {
     private func onSignInWithAppleButtonTap() {
         Task {
             do {
-                let user = try await authService.signInWithApple()
-                print("Signed in with Apple!")
+                let user = try await authManager.signInWithApple()
+                print("[CreateAccountView] Signed in with Apple!")
 
                 onDidSignIn?(user.isNewUser)
 
                 dismiss()
 
             } catch {
-                print("Error signing in with Apple. Error: \(error.localizedDescription)")
+                print("[CreateAccountView] Error signing in with Apple. Error: \(error.localizedDescription)")
             }
         }
     }

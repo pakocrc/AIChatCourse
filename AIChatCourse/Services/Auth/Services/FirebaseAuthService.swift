@@ -1,5 +1,5 @@
 //
-//  FirebaseAuthService.swift
+//  FirebaseauthManager.swift
 //  AIChatCourse
 //
 //  Created by Francisco Cordoba on 1/20/26.
@@ -10,7 +10,22 @@ import SignInAppleAsync
 import SwiftUI
 
 struct FirebaseAuthService: AuthService {
-    
+
+    func addAuthenticatedUserListener(onListenerAttached: (any NSObjectProtocol) -> Void) -> AsyncStream<UserAuthInfo?> {
+        AsyncStream { continuation in
+            let listener = Auth.auth().addStateDidChangeListener { auth, currentUser in
+                if let currentUser {
+                    let user = UserAuthInfo(user: currentUser)
+                    continuation.yield(user)
+                } else {
+                    continuation.yield(nil)
+                }
+            }
+
+            onListenerAttached(listener)
+        }
+    }
+
     func getAuthenticatedUser() -> UserAuthInfo? {
         if let user = Auth.auth().currentUser {
             return UserAuthInfo(user: user)
@@ -41,7 +56,7 @@ struct FirebaseAuthService: AuthService {
                 return result.asAuthInfo
                 
             } catch let error as NSError {
-                print("Failed to link existing anonymous account: \(error)")
+                print("[FirebaseAuthService] Failed to link existing anonymous account: \(error)")
                 
                 let authError = AuthErrorCode(rawValue: error.code)
                 switch authError {
@@ -72,16 +87,5 @@ struct FirebaseAuthService: AuthService {
         }
         
         try await user.delete()
-    }
-    
-    enum AuthError: LocalizedError {
-        case userNotFound
-        
-        var errorDescription: String? {
-            switch self {
-            case .userNotFound:
-                return "Current authenticated user not found."
-            }
-        }
     }
 }

@@ -27,7 +27,7 @@ struct ImageLoaderView: View {
 								.scaledToFit()
 								.allowsHitTesting(false)
 								.onAppear(perform: {
-									debugPrint("Error downloading image: \(error)")
+									debugPrint("[ImageLoaderView] Error downloading image: \(error)")
 								})
 							
 						case .success(let image):
@@ -45,7 +45,7 @@ struct ImageLoaderView: View {
 								.scaledToFit()
 								.allowsHitTesting(false)
 								.onAppear(perform: {
-									debugPrint("Unknown error downloading image")
+									debugPrint("[ImageLoaderView] Unknown error downloading image")
 								})
 								.foregroundStyle(.gray)
 						}

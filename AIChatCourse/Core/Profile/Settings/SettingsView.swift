@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
 	@Environment(AppState.self) private var appState
-    @Environment(\.authService) private var authService
+    @Environment(AuthManager.self) private var authManager
 	@Environment(\.dismiss) private var dismiss
 
 	@State var isPremium: Bool = false
@@ -152,9 +152,9 @@ struct SettingsView: View {
 	}
 
     private func setAnnonymousAccountStatus() {
-        print("User: \(authService.getAuthenticatedUser()?.uid ?? "no user")")
+        print("[SettingsView] User: \(authManager.userAuth?.uid ?? "no user")")
 
-        guard let isAnonymous = authService.getAuthenticatedUser()?.isAnonymous, !isAnonymous else {
+        guard let isAnonymous = authManager.userAuth?.isAnonymous, !isAnonymous else {
             isAnnonymousUser = true
             return
         }
@@ -164,12 +164,12 @@ struct SettingsView: View {
 
 	private func onSignOutPressed() {
         do {
-            try authService.signOut()
-            print("Signed out successfully!")
+            try authManager.signOut()
+            print("[SettingsView] Signed out successfully!")
             dismissScreen()
 
         } catch {
-            print("Error signing out: \(error.localizedDescription)")
+            print("[SettingsView] Error signing out: \(error.localizedDescription)")
             showAlert = AnyAppAlert(error: error)
         }
 	}
@@ -191,13 +191,13 @@ struct SettingsView: View {
     private func deleteUserConfirmed() {
         Task {
             do {
-                try await authService.deleteAccount()
-                print("Account deleted successfully!")
+                try await authManager.deleteAccount()
+                print("[SettingsView] Account deleted successfully!")
 
                 dismissScreen()
 
             } catch {
-                print("Error deleting account: \(error.localizedDescription)")
+                print("[SettingsView] Error deleting account: \(error.localizedDescription)")
                 showAlert = AnyAppAlert(error: error)
             }
         }
@@ -212,7 +212,7 @@ struct SettingsView: View {
 #Preview("Signed in") {
 	NavigationStack {
 		SettingsView()
-            .environment(\.authService, MockAuthService(currentUser: UserAuthInfo.mock(isAnonymous: false)) )
+            .environment(AuthManager(service: MockAuthService(currentUser: UserAuthInfo.mock(isAnonymous: false))))
 			.environment(AppState())
 	}
 }
@@ -220,7 +220,7 @@ struct SettingsView: View {
 #Preview("Anonymous") {
     NavigationStack {
         SettingsView()
-            .environment(\.authService, MockAuthService(currentUser: UserAuthInfo.mock(isAnonymous: true)) )
+            .environment(AuthManager(service: MockAuthService(currentUser: UserAuthInfo.mock(isAnonymous: true))))
             .environment(AppState())
     }
 }
@@ -228,7 +228,7 @@ struct SettingsView: View {
 #Preview("Not Auth") {
     NavigationStack {
         SettingsView()
-            .environment(\.authService, MockAuthService(currentUser: nil) )
+            .environment(AuthManager(service: MockAuthService(currentUser: nil)))
             .environment(AppState())
     }
 }
