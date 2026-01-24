@@ -12,7 +12,7 @@ struct WelcomeView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State var imageUrl = Constants.randomImageUrl
 	@State var createAccountSheetPresented: Bool = false
-	
+
     var body: some View {
         NavigationStack {
             VStack {
