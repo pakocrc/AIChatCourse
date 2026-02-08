@@ -9,9 +9,10 @@ import SwiftUI
 
 struct OnboardingCompletedView: View {
     @Environment(AppState.self) private var appState
+    @Environment(UserManager.self) private var userManager
     @State private var isCompletingProfileSetup: Bool = false
-    var selectedColor: Color?
-    
+    let selectedColor: Color
+
     var body: some View {
         Group {
             topSection
@@ -24,7 +25,7 @@ struct OnboardingCompletedView: View {
     private var topSection: some View {
         VStack(alignment: .leading, spacing: 20) {
             Text("Setup complete!")
-                .foregroundStyle(selectedColor != nil ? selectedColor! : .primary)
+                .foregroundStyle(selectedColor)
                 .font(.largeTitle)
                 .fontWeight(.bold)
             
@@ -50,10 +51,11 @@ struct OnboardingCompletedView: View {
         isCompletingProfileSetup = true
         
         Task {
-            try await Task.sleep(for: .seconds(1))
+            let hexColor = selectedColor.asHex()
+            try await userManager.markOnboardingComplete(profileColorHex: hexColor)
 
+            // Dismiss screen
             isCompletingProfileSetup = false
-            
             appState.updateViewState(showTabBar: true)
         }
     }
@@ -62,4 +64,11 @@ struct OnboardingCompletedView: View {
 #Preview {
     OnboardingCompletedView(selectedColor: Color.green)
         .environment(AppState())
+        .environment(
+            UserManager(
+                service: MockUserService(
+                    currentUser: UserModel.mock
+                )
+            )
+        )
 }

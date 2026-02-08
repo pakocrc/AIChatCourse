@@ -27,7 +27,7 @@ final class AuthManager {
                 self.listener = listener
             }) {
                 self.userAuth = value
-                print("[AuthManager] Auth listener updated: \(self.userAuth?.uid ?? "no uid")")
+                print("[\(Bundle.main.appName)] [AuthManager] [addAuthListener] Auth listener updated: \(self.userAuth?.uid ?? "no uid")")
             }
         }
     }

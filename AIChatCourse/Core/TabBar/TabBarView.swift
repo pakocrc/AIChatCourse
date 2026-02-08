@@ -25,6 +25,7 @@ struct TabBarView: View {
                     Label("Profile", systemImage: "person.fill")
                 }
         }
+        .persistentSystemOverlays(.hidden)
     }
 }
 

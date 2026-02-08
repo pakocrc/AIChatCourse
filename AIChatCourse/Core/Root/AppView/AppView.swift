@@ -38,14 +38,14 @@ struct AppView: View {
     private func checkAuthStatus() async {
         if let user = authManager.userAuth {
             // User is authenticated
-            print("[AppView] User is authenticated: \(user.uid)")
+            print("[\(Bundle.main.appName)] [AppView] [checkAuthStatus] User is authenticated: \(user.uid)")
 
             do {
                 try await userManager.logIn(userAuthInfo: user, isNewUser: false)
 
             } catch {
                 // Failed to store in the DB
-                print("[AppView] Error saving user to the database: \(error)")
+                print("[\(Bundle.main.appName)] [AppView] [checkAuthStatus] Error saving user to the database: \(error)")
 
                 try? await Task.sleep(for: .seconds(3))
                 await checkAuthStatus()
@@ -56,12 +56,12 @@ struct AppView: View {
             do {
                 // Sign in anonymously
                 let result = try await authManager.signInAnonymously()
-                print("[AppView] Sign In Anonymous successful: \(result)")
+                print("[\(Bundle.main.appName)] [AppView] [checkAuthStatus] Sign In Anonymous successful: \(result)")
 
                 try await userManager.logIn(userAuthInfo: result.user, isNewUser: result.isNewUser)
 
             } catch {
-                print("[AppView] Error signing in anonymously: \(error)")
+                print("[\(Bundle.main.appName)] [AppView] [checkAuthStatus] Error signing in anonymously: \(error)")
                 try? await Task.sleep(for: .seconds(3))
                 await checkAuthStatus()
             }
@@ -71,8 +71,12 @@ struct AppView: View {
 
 #Preview("AppView - Tab Bar") {
     AppView(appState: AppState(showTabBar: true))
+        .environment(AuthManager(service: MockAuthService(currentUser: UserAuthInfo.mock())))
+        .environment(UserManager(service: MockUserService(currentUser: UserModel.mock)))
 }
 
 #Preview("AppView - Onboarding") {
     AppView(appState: AppState(showTabBar: false))
+        .environment(AuthManager(service: MockAuthService(currentUser: nil)))
+        .environment(UserManager(service: MockUserService(currentUser: nil)))
 }

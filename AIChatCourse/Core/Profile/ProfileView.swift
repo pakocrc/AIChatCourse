@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ProfileView: View {
-	@State var userModel: UserModel?
+    @Environment(UserManager.self) private var userManager
+	@State var currentUser: UserModel?
 	@State var myAvatars: [AvatarModel] = []
 	
 	@State private var showSettingsView: Bool = false
@@ -47,7 +48,7 @@ struct ProfileView: View {
 	private var profileInfoSection: some View {
 		ZStack {
 			Circle()
-				.foregroundStyle(userModel?.profileColorCalculated ?? .accent)
+				.foregroundStyle(currentUser?.profileColorCalculated ?? .accent)
 				.frame(height: 120)
 				.aspectRatio(1, contentMode: .fit)
 				.frame(maxWidth: .infinity, alignment: .center)
@@ -113,7 +114,7 @@ struct ProfileView: View {
 	
 	// MARK: - Functions
 	private func loadData() async {
-		try? await Task.sleep(for: .seconds(2))
+        self.currentUser = userManager.currentUser
 		myAvatars = AvatarModel.mocks
 		isLoading = false
 	}
@@ -139,8 +140,9 @@ struct ProfileView: View {
 #Preview {
 	NavigationStack {
 		ProfileView(
-			userModel: UserModel.mock
+			currentUser: UserModel.mock
 		)
 		.environment(AppState())
+        .environment(UserManager(service: MockUserService(currentUser: .mock)))
 	}
 }

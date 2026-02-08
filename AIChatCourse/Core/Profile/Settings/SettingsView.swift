@@ -10,12 +10,16 @@ import SwiftUI
 struct SettingsView: View {
 	@Environment(AppState.self) private var appState
     @Environment(AuthManager.self) private var authManager
+    @Environment(UserManager.self) private var userManager
 	@Environment(\.dismiss) private var dismiss
 
 	@State var isPremium: Bool = false
-	@State var isAnnonymousUser: Bool = true
 	@State var createAccountSheetPresented: Bool = false
     @State var showAlert: AnyAppAlert?
+
+    private var isAnnonymousUser: Bool {
+        userManager.currentUser?.isAnonymous ?? true
+    }
 
 	var body: some View {
 		NavigationStack {
@@ -41,17 +45,12 @@ struct SettingsView: View {
 					}
 				}
 			}
-            .sheet(isPresented: $createAccountSheetPresented, onDismiss: {
-                setAnnonymousAccountStatus()
-            }, content: {
+            .sheet(isPresented: $createAccountSheetPresented, content: {
                 CreateAccountView()
                     .presentationDetents(
                         [.medium]
                     )
             })
-            .onAppear {
-                setAnnonymousAccountStatus()
-            }
 		}
 	}
 	
@@ -151,25 +150,15 @@ struct SettingsView: View {
 		createAccountSheetPresented = true
 	}
 
-    private func setAnnonymousAccountStatus() {
-        print("[SettingsView] User: \(authManager.userAuth?.uid ?? "no user")")
-
-        guard let isAnonymous = authManager.userAuth?.isAnonymous, !isAnonymous else {
-            isAnnonymousUser = true
-            return
-        }
-
-        isAnnonymousUser = false
-    }
-
 	private func onSignOutPressed() {
         do {
             try authManager.signOut()
-            print("[SettingsView] Signed out successfully!")
+            userManager.signOut()
+            print("[\(Bundle.main.appName)] [SettingsView] [onCreateAccountButtonPressed] Signed out successfully!")
             dismissScreen()
 
         } catch {
-            print("[SettingsView] Error signing out: \(error.localizedDescription)")
+            print("[\(Bundle.main.appName)] [SettingsView] [onCreateAccountButtonPressed] Error signing out: \(error.localizedDescription)")
             showAlert = AnyAppAlert(error: error)
         }
 	}
@@ -192,12 +181,12 @@ struct SettingsView: View {
         Task {
             do {
                 try await authManager.deleteAccount()
-                print("[SettingsView] Account deleted successfully!")
-
+                try await userManager.deleteCurrentUser()
+                print("[\(Bundle.main.appName)] [SettingsView] Account deleted successfully!")
                 dismissScreen()
 
             } catch {
-                print("[SettingsView] Error deleting account: \(error.localizedDescription)")
+                print("[\(Bundle.main.appName)] [SettingsView] Error deleting account: \(error.localizedDescription)")
                 showAlert = AnyAppAlert(error: error)
             }
         }
@@ -214,6 +203,13 @@ struct SettingsView: View {
 		SettingsView()
             .environment(AuthManager(service: MockAuthService(currentUser: UserAuthInfo.mock(isAnonymous: false))))
 			.environment(AppState())
+            .environment(
+                UserManager(
+                    service: MockUserService(
+                        currentUser: UserModel.mock
+                    )
+                )
+            )
 	}
 }
 
@@ -222,6 +218,13 @@ struct SettingsView: View {
         SettingsView()
             .environment(AuthManager(service: MockAuthService(currentUser: UserAuthInfo.mock(isAnonymous: true))))
             .environment(AppState())
+            .environment(
+                UserManager(
+                    service: MockUserService(
+                        currentUser: UserModel.mock
+                    )
+                )
+            )
     }
 }
 
@@ -230,5 +233,12 @@ struct SettingsView: View {
         SettingsView()
             .environment(AuthManager(service: MockAuthService(currentUser: nil)))
             .environment(AppState())
+            .environment(
+                UserManager(
+                    service: MockUserService(
+                        currentUser: nil
+                    )
+                )
+            )
     }
 }

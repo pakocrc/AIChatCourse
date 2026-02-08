@@ -56,7 +56,7 @@ struct FirebaseAuthService: AuthService {
                 return result.asAuthInfo
                 
             } catch let error as NSError {
-                print("[FirebaseAuthService] Failed to link existing anonymous account: \(error.localizedDescription)")
+                print("[\(Bundle.main.appName)] [FirebaseAuthService] Failed to link existing anonymous account: \(error.localizedDescription)")
 
                 let authError = AuthErrorCode(rawValue: error.code)
                 switch authError {

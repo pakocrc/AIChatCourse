@@ -22,7 +22,7 @@ struct UserModel: Codable {
 		guard let profileColorHex else {
 			return Color.accent
 		}
-		return Color(hex: profileColorHex) ?? Color.accent
+		return Color(hex: profileColorHex)
 	}
 
     init(
@@ -57,7 +57,14 @@ struct UserModel: Codable {
     }
 
     enum CodingKeys: String, CodingKey {
-        case userId, didCompleteOnboarding, profileColorHex, email, isAnonymous, creationDate, lastSignInDate, creationVersion
+        case userId = "user_id",
+             email,
+             didCompleteOnboarding = "did_complete_onboarding",
+             profileColorHex = "profile_color_hex",
+             isAnonymous = "is_anonymous",
+             creationDate = "creation_date",
+             lastSignInDate = "last_sign_in_date",
+             creationVersion = "creation_version"
     }
 
 	// MARK: - Mocks
