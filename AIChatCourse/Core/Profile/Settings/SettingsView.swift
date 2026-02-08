@@ -154,11 +154,11 @@ struct SettingsView: View {
         do {
             try authManager.signOut()
             userManager.signOut()
-            print("[\(Bundle.main.appName)] [SettingsView] [onCreateAccountButtonPressed] Signed out successfully!")
+            print("[\(Bundle.main.appName)] [SettingsView] [onSignOutPressed] Signed out successfully!")
             dismissScreen()
 
         } catch {
-            print("[\(Bundle.main.appName)] [SettingsView] [onCreateAccountButtonPressed] Error signing out: \(error.localizedDescription)")
+            print("[\(Bundle.main.appName)] [SettingsView] [onSignOutPressed] Error signing out: \(error.localizedDescription)")
             showAlert = AnyAppAlert(error: error)
         }
 	}
@@ -203,13 +203,7 @@ struct SettingsView: View {
 		SettingsView()
             .environment(AuthManager(service: MockAuthService(currentUser: UserAuthInfo.mock(isAnonymous: false))))
 			.environment(AppState())
-            .environment(
-                UserManager(
-                    service: MockUserService(
-                        currentUser: UserModel.mock
-                    )
-                )
-            )
+            .environment(UserManager(userServices: MockUserServices(user: .mock)))
 	}
 }
 
@@ -218,13 +212,7 @@ struct SettingsView: View {
         SettingsView()
             .environment(AuthManager(service: MockAuthService(currentUser: UserAuthInfo.mock(isAnonymous: true))))
             .environment(AppState())
-            .environment(
-                UserManager(
-                    service: MockUserService(
-                        currentUser: UserModel.mock
-                    )
-                )
-            )
+            .environment(UserManager(userServices: MockUserServices(user: .mock)))
     }
 }
 
@@ -233,12 +221,6 @@ struct SettingsView: View {
         SettingsView()
             .environment(AuthManager(service: MockAuthService(currentUser: nil)))
             .environment(AppState())
-            .environment(
-                UserManager(
-                    service: MockUserService(
-                        currentUser: nil
-                    )
-                )
-            )
+            .environment(UserManager(userServices: MockUserServices()))
     }
 }

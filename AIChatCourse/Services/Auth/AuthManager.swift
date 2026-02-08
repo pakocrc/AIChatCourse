@@ -23,11 +23,13 @@ final class AuthManager {
 
     private func addAuthListener() {
         Task {
+            self.listener = nil
+
             for await value in service.addAuthenticatedUserListener(onListenerAttached: { listener in
                 self.listener = listener
             }) {
                 self.userAuth = value
-                print("[\(Bundle.main.appName)] [AuthManager] [addAuthListener] Auth listener updated: \(self.userAuth?.uid ?? "no uid")")
+                // print("[\(Bundle.main.appName)] [AuthManager] [addAuthListener] Auth listener updated: \(self.userAuth?.uid ?? "no uid")")
             }
         }
     }

@@ -119,3 +119,9 @@ struct UserModel: Codable {
 		]
 	}
 }
+
+extension UserModel: Equatable {
+    static func == (lhs: UserModel, rhs: UserModel) -> Bool {
+        return lhs.userId == rhs.userId
+    }
+}
