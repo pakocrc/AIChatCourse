@@ -10,7 +10,10 @@ import SwiftUI
 struct OnboardingCompletedView: View {
     @Environment(AppState.self) private var appState
     @Environment(UserManager.self) private var userManager
+
     @State private var isCompletingProfileSetup: Bool = false
+    @State private var presentAlert: AnyAppAlert?
+
     let selectedColor: Color
 
     var body: some View {
@@ -34,6 +37,7 @@ struct OnboardingCompletedView: View {
                 .font(.title)
                 .fontWeight(.medium)
         }
+        .showCustomAlert(type: .alert, alertInfo: $presentAlert)
         .baselineOffset(5)
         .padding()
         .frame(maxHeight: .infinity)
@@ -51,12 +55,17 @@ struct OnboardingCompletedView: View {
         isCompletingProfileSetup = true
         
         Task {
-            let hexColor = selectedColor.asHex()
-            try await userManager.markOnboardingComplete(profileColorHex: hexColor)
+            do {
+                let hexColor = selectedColor.asHex()
+                try await userManager.markOnboardingComplete(profileColorHex: hexColor)
 
-            // Dismiss screen
-            isCompletingProfileSetup = false
-            appState.updateViewState(showTabBar: true)
+                // Dismiss screen
+                isCompletingProfileSetup = false
+                appState.updateViewState(showTabBar: true)
+
+            } catch let error {
+                presentAlert = AnyAppAlert(error: error)
+            }
         }
     }
 }
