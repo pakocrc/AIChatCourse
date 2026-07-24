@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct CreateAccountView: View {
+    @Environment(AuthManager.self) private var authManager
+    @Environment(UserManager.self) private var userManager
+    @Environment(\.dismiss) var dismiss
 	var title: String = "Create Account"
 	var subtitle: String = "Don't lose your data! Connect to an SSO provider to save your account information."
-	
+    var onDidSignIn: ((_ isNewUser: Bool) -> Void)?
+
     var body: some View {
 		VStack(alignment: .leading, spacing: 20) {
 			Text(title)
@@ -32,11 +36,29 @@ struct CreateAccountView: View {
 		)
 		.frame(height: 50)
 		.anyButton(.press, action: {
-			
+            onSignInWithAppleButtonTap()
 		})
 		.padding()
 		
 		Spacer()
+    }
+
+    private func onSignInWithAppleButtonTap() {
+        Task {
+            do {
+                let result = try await authManager.signInWithApple()
+                print("[\(Bundle.main.appName)] [CreateAccountView] Signed in with Apple! User id: \(result.user.uid)")
+
+                try await userManager.logIn(userAuthInfo: result.user, isNewUser: result.isNewUser)
+                print("[\(Bundle.main.appName)] [CreateAccountView] Logged into the database! User id: \(result.user.uid)")
+
+                onDidSignIn?(result.isNewUser)
+                dismiss()
+
+            } catch {
+                print("[\(Bundle.main.appName)] [CreateAccountView] Error signing in with Apple. Error: \(error.localizedDescription)")
+            }
+        }
     }
 }
 
@@ -44,11 +66,11 @@ struct CreateAccountView: View {
 	VStack {
 		CreateAccountView(
 			title: "Sign In",
-			subtitle: "Already have an account? Sign in instead."
+			subtitle: "Already have an account? Sign in instead.",
+            onDidSignIn: { _ in }
 		)
 		
 		CreateAccountView()
-		
+            .background(Color.blue)
 	}
-	.background(Color.blue)
 }

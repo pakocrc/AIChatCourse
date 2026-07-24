@@ -9,9 +9,13 @@ import SwiftUI
 
 struct OnboardingCompletedView: View {
     @Environment(AppState.self) private var appState
+    @Environment(UserManager.self) private var userManager
+
     @State private var isCompletingProfileSetup: Bool = false
-    var selectedColor: Color?
-    
+    @State private var presentAlert: AnyAppAlert?
+
+    let selectedColor: Color
+
     var body: some View {
         Group {
             topSection
@@ -24,7 +28,7 @@ struct OnboardingCompletedView: View {
     private var topSection: some View {
         VStack(alignment: .leading, spacing: 20) {
             Text("Setup complete!")
-                .foregroundStyle(selectedColor != nil ? selectedColor! : .primary)
+                .foregroundStyle(selectedColor)
                 .font(.largeTitle)
                 .fontWeight(.bold)
             
@@ -33,6 +37,7 @@ struct OnboardingCompletedView: View {
                 .font(.title)
                 .fontWeight(.medium)
         }
+        .showCustomAlert(type: .alert, alertInfo: $presentAlert)
         .baselineOffset(5)
         .padding()
         .frame(maxHeight: .infinity)
@@ -50,11 +55,17 @@ struct OnboardingCompletedView: View {
         isCompletingProfileSetup = true
         
         Task {
-            try await Task.sleep(for: .seconds(1))
+            do {
+                let hexColor = selectedColor.asHex()
+                try await userManager.markOnboardingComplete(profileColorHex: hexColor)
 
-            isCompletingProfileSetup = false
-            
-            appState.updateViewState(showTabBar: true)
+                // Dismiss screen
+                isCompletingProfileSetup = false
+                appState.updateViewState(showTabBar: true)
+
+            } catch let error {
+                presentAlert = AnyAppAlert(error: error)
+            }
         }
     }
 }
@@ -62,4 +73,5 @@ struct OnboardingCompletedView: View {
 #Preview {
     OnboardingCompletedView(selectedColor: Color.green)
         .environment(AppState())
+        .environment(UserManager(userServices: MockUserServices(user: .mock)))
 }

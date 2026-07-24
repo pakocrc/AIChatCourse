@@ -6,6 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		CD1FDA892F37D63200DB7B3D /* SwiftfulFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CD1FDA882F37D63200DB7B3D /* SwiftfulFirestore */; };
+		CD3235242F21BC16005BA3B0 /* SignInAppleAsync in Frameworks */ = {isa = PBXBuildFile; productRef = CD3235232F21BC16005BA3B0 /* SignInAppleAsync */; };
+		CD60236B30131FB500D9D6FD /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = CD60236A30131FB500D9D6FD /* OpenAI */; };
+		CD774DAE2F21CE4C00DEF904 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD774DAD2F21CE4C00DEF904 /* GoogleService-Info.plist */; };
+		CD9732942F23AB5E00C12552 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CD9732932F23AB5E00C12552 /* FirebaseFirestore */; };
+		CDDDA54B2F206C90009A12ED /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CDDDA54A2F206C90009A12ED /* FirebaseAuth */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		972ECE362E39067200A9951A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +36,7 @@
 		972ECE282E39067100A9951A /* AIChatCourse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AIChatCourse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		972ECE352E39067200A9951A /* AIChatCourseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AIChatCourseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		972ECE3F2E39067200A9951A /* AIChatCourseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AIChatCourseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD774DAD2F21CE4C00DEF904 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -52,6 +62,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD60236B30131FB500D9D6FD /* OpenAI in Frameworks */,
+				CD1FDA892F37D63200DB7B3D /* SwiftfulFirestore in Frameworks */,
+				CD3235242F21BC16005BA3B0 /* SignInAppleAsync in Frameworks */,
+				CDDDA54B2F206C90009A12ED /* FirebaseAuth in Frameworks */,
+				CD9732942F23AB5E00C12552 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,9 +90,11 @@
 		972ECE1F2E39067100A9951A = {
 			isa = PBXGroup;
 			children = (
+				CD774DAD2F21CE4C00DEF904 /* GoogleService-Info.plist */,
 				972ECE2A2E39067100A9951A /* AIChatCourse */,
 				972ECE382E39067200A9951A /* AIChatCourseTests */,
 				972ECE422E39067200A9951A /* AIChatCourseUITests */,
+				CD9732922F23AB5E00C12552 /* Frameworks */,
 				972ECE292E39067100A9951A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +107,13 @@
 				972ECE3F2E39067200A9951A /* AIChatCourseUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		CD9732922F23AB5E00C12552 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -113,6 +137,11 @@
 			);
 			name = AIChatCourse;
 			packageProductDependencies = (
+				CDDDA54A2F206C90009A12ED /* FirebaseAuth */,
+				CD3235232F21BC16005BA3B0 /* SignInAppleAsync */,
+				CD9732932F23AB5E00C12552 /* FirebaseFirestore */,
+				CD1FDA882F37D63200DB7B3D /* SwiftfulFirestore */,
+				CD60236A30131FB500D9D6FD /* OpenAI */,
 			);
 			productName = AIChatCourse;
 			productReference = 972ECE282E39067100A9951A /* AIChatCourse.app */;
@@ -172,7 +201,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1640;
-				LastUpgradeCheck = 1640;
+				LastUpgradeCheck = 2620;
 				TargetAttributes = {
 					972ECE272E39067100A9951A = {
 						CreatedOnToolsVersion = 16.4;
@@ -197,6 +226,12 @@
 			);
 			mainGroup = 972ECE1F2E39067100A9951A;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				CDDDA5492F206C90009A12ED /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				CD3235222F21BC16005BA3B0 /* XCRemoteSwiftPackageReference "SignInAppleAsync" */,
+				CD1FDA872F37D63200DB7B3D /* XCRemoteSwiftPackageReference "SwiftfulFirestore" */,
+				CD60236930131FB500D9D6FD /* XCRemoteSwiftPackageReference "OpenAI" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 972ECE292E39067100A9951A /* Products */;
 			projectDirPath = "";
@@ -214,6 +249,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD774DAE2F21CE4C00DEF904 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +335,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -353,6 +390,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -364,6 +402,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -411,6 +450,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
@@ -422,6 +462,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AIChatCourse/AIChatCourse.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9B334YL85T;
@@ -440,8 +482,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.automata.AIChatCourse;
+				PRODUCT_BUNDLE_IDENTIFIER = com.automata.AIChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -457,6 +500,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AIChatCourse/AIChatCourse.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9B334YL85T;
@@ -475,8 +520,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.automata.AIChatCourse;
+				PRODUCT_BUNDLE_IDENTIFIER = com.automata.AIChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -599,6 +645,69 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CD1FDA872F37D63200DB7B3D /* XCRemoteSwiftPackageReference "SwiftfulFirestore" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:SwiftfulThinking/SwiftfulFirestore.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.0.4;
+			};
+		};
+		CD3235222F21BC16005BA3B0 /* XCRemoteSwiftPackageReference "SignInAppleAsync" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:SwiftfulThinking/SignInAppleAsync.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.2;
+			};
+		};
+		CD60236930131FB500D9D6FD /* XCRemoteSwiftPackageReference "OpenAI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MacPaw/OpenAI.git";
+			requirement = {
+				kind = exactVersion;
+				version = 0.5.0;
+			};
+		};
+		CDDDA5492F206C90009A12ED /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.8.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CD1FDA882F37D63200DB7B3D /* SwiftfulFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CD1FDA872F37D63200DB7B3D /* XCRemoteSwiftPackageReference "SwiftfulFirestore" */;
+			productName = SwiftfulFirestore;
+		};
+		CD3235232F21BC16005BA3B0 /* SignInAppleAsync */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CD3235222F21BC16005BA3B0 /* XCRemoteSwiftPackageReference "SignInAppleAsync" */;
+			productName = SignInAppleAsync;
+		};
+		CD60236A30131FB500D9D6FD /* OpenAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CD60236930131FB500D9D6FD /* XCRemoteSwiftPackageReference "OpenAI" */;
+			productName = OpenAI;
+		};
+		CD9732932F23AB5E00C12552 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CDDDA5492F206C90009A12ED /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		CDDDA54A2F206C90009A12ED /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CDDDA5492F206C90009A12ED /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 972ECE202E39067100A9951A /* Project object */;
 }

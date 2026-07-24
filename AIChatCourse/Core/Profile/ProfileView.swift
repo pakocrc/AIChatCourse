@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ProfileView: View {
-	@State var userModel: UserModel?
+    @Environment(UserManager.self) private var userManager
+	@State var currentUser: UserModel?
 	@State var myAvatars: [AvatarModel] = []
 	
 	@State private var showSettingsView: Bool = false
@@ -41,16 +42,26 @@ struct ProfileView: View {
 		.task {
 			await loadData()
 		}
+        .onChange(of: userManager.currentUser) { _, _ in
+            Task {
+                await loadData()
+            }
+        }
 	}
 	
 	// MARK: - View Components
 	private var profileInfoSection: some View {
-		ZStack {
+		VStack {
 			Circle()
-				.foregroundStyle(userModel?.profileColorCalculated ?? .accent)
+				.foregroundStyle(currentUser?.profileColorCalculated ?? .accent)
 				.frame(height: 120)
 				.aspectRatio(1, contentMode: .fit)
 				.frame(maxWidth: .infinity, alignment: .center)
+
+            if let email = currentUser?.email {
+                Text(email)
+                    .font(.headline)
+            }
 		}
 	}
 	
@@ -113,7 +124,8 @@ struct ProfileView: View {
 	
 	// MARK: - Functions
 	private func loadData() async {
-		try? await Task.sleep(for: .seconds(2))
+        isLoading = true
+        self.currentUser = userManager.currentUser
 		myAvatars = AvatarModel.mocks
 		isLoading = false
 	}
@@ -137,10 +149,9 @@ struct ProfileView: View {
 }
 
 #Preview {
-	NavigationStack {
-		ProfileView(
-			userModel: UserModel.mock
-		)
-		.environment(AppState())
-	}
+    NavigationStack {
+        ProfileView(currentUser: UserModel.mock )
+        .environment(AppState())
+        .environment(UserManager(userServices: MockUserServices(user: .mock)))
+    }
 }

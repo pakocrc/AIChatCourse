@@ -1,0 +1,91 @@
+//
+//  FirebaseauthManager.swift
+//  AIChatCourse
+//
+//  Created by Francisco Cordoba on 1/20/26.
+//
+
+import FirebaseAuth
+import SignInAppleAsync
+import SwiftUI
+
+struct FirebaseAuthService: AuthService {
+
+    func addAuthenticatedUserListener(onListenerAttached: (any NSObjectProtocol) -> Void) -> AsyncStream<UserAuthInfo?> {
+        AsyncStream { continuation in
+            let listener = Auth.auth().addStateDidChangeListener { _, currentUser in
+                if let currentUser {
+                    let user = UserAuthInfo(user: currentUser)
+                    continuation.yield(user)
+                } else {
+                    continuation.yield(nil)
+                }
+            }
+
+            onListenerAttached(listener)
+        }
+    }
+
+    func getAuthenticatedUser() -> UserAuthInfo? {
+        if let user = Auth.auth().currentUser {
+            return UserAuthInfo(user: user)
+        }
+        
+        return nil
+    }
+    
+    func signInAnonymously() async throws -> (user: UserAuthInfo, isNewUser: Bool) {
+        let result = try await Auth.auth().signInAnonymously()
+        return result.asAuthInfo
+    }
+    
+    func signInWithApple() async throws -> (user: UserAuthInfo, isNewUser: Bool) {
+        let helper = await SignInWithAppleHelper()
+        let response = try await helper.signIn()
+        
+        let credential = OAuthProvider.credential(
+            providerID: AuthProviderID.apple,
+            idToken: response.token,
+            rawNonce: response.nonce)
+        
+        // Try to link to existing anonymous account.
+        if let user = Auth.auth().currentUser, user.isAnonymous {
+            
+            do {
+                let result = try await user.link(with: credential)
+                return result.asAuthInfo
+                
+            } catch let error as NSError {
+                print("[\(Bundle.main.appName)] [FirebaseAuthService] Failed to link existing anonymous account: \(error.localizedDescription)")
+
+                let authError = AuthErrorCode(rawValue: error.code)
+                switch authError {
+                case .providerAlreadyLinked, .credentialAlreadyInUse:
+                    
+                    if let secondaryCredential = error.userInfo["FIRAuthErrorUserInfoUpdatedCredentialKey"] as? AuthCredential {
+                        let result = try await Auth.auth().signIn(with: secondaryCredential)
+                        return result.asAuthInfo
+                    }
+                    
+                default:
+                    break
+                }
+            }
+        }
+        
+        let result = try await Auth.auth().signIn(with: credential)
+        return result.asAuthInfo
+    }
+    
+    func signOut() throws {
+        try? Auth.auth().signOut()
+    }
+    
+    func deleteAccount() async throws {
+        guard let user = Auth.auth().currentUser else {
+            throw AuthError.userNotFound
+        }
+        
+        try await user.delete()
+    }
+}

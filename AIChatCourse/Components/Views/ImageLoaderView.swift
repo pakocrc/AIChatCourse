@@ -27,7 +27,7 @@ struct ImageLoaderView: View {
 								.scaledToFit()
 								.allowsHitTesting(false)
 								.onAppear(perform: {
-									debugPrint("Error downloading image: \(error)")
+									print("[\(Bundle.main.appName)] [ImageLoaderView] Error downloading image: \(error)")
 								})
 							
 						case .success(let image):
@@ -45,7 +45,7 @@ struct ImageLoaderView: View {
 								.scaledToFit()
 								.allowsHitTesting(false)
 								.onAppear(perform: {
-									debugPrint("Unknown error downloading image")
+									print("[\(Bundle.main.appName)] [ImageLoaderView] Unknown error downloading image")
 								})
 								.foregroundStyle(.gray)
 						}

@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct WelcomeView: View {
+    @Environment(AppState.self) private var appState
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State var imageUrl = Constants.randomImageUrl
 	@State var createAccountSheetPresented: Bool = false
-	
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -28,7 +29,10 @@ struct WelcomeView: View {
 		.sheet(isPresented: $createAccountSheetPresented) {
 			CreateAccountView(
 				title: "Sign In",
-				subtitle: "Already have an account? Connect to an existing account instead."
+				subtitle: "Already have an account? Connect to an existing account instead.",
+                onDidSignIn: { isNewUser in
+                    handleDidSignIn(isNewUser: isNewUser)
+                }
 			)
 				.presentationDetents([.medium])
 		}
@@ -96,6 +100,15 @@ struct WelcomeView: View {
 	private func onSignInPressed() {
 		createAccountSheetPresented = true
 	}
+
+    private func handleDidSignIn(isNewUser: Bool) {
+        if isNewUser {
+            appState.updateViewState(showTabBar: false)
+
+        } else {
+            appState.updateViewState(showTabBar: true)
+        }
+    }
 }
 
 #Preview("Light") {

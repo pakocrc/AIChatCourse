@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct OnboardingColorView: View {
-    
     @State private var selectedColor: Color?
-    
     private let gridColums: [GridItem] = Array(repeating: .init(.flexible(), spacing: 10), count: 3)
     private let colors: [Color] = [
         .green,
@@ -71,7 +69,9 @@ struct OnboardingColorView: View {
         ZStack {
             if selectedColor != nil {
                 NavigationLink {
-                    OnboardingCompletedView(selectedColor: selectedColor)
+                    if let selectedColor {
+                        OnboardingCompletedView(selectedColor: selectedColor)
+                    }
                 } label: {
                     Text("Continue")
 						.frame(maxWidth: .infinity)

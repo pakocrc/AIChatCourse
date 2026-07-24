@@ -15,4 +15,15 @@ extension Bundle {
 	var buildNumber: String {
 		return infoDictionary?["CFBundleVersion"] as? String ?? "Unknown"
 	}
+
+    var appName: String {
+        // Prefer the display name if available, otherwise fall back to bundle name
+        if let displayName = infoDictionary?["CFBundleDisplayName"] as? String, !displayName.isEmpty {
+            return displayName
+        }
+        if let name = infoDictionary?["CFBundleName"] as? String, !name.isEmpty {
+            return name
+        }
+        return "Unknown"
+    }
 }
