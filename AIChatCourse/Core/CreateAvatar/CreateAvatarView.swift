@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct CreateAvatarView: View {
-	@Environment(\.dismiss) var dismiss
-	
+	@Environment(\.dismiss) private var dismiss
+    @Environment(AIManager.self) private var aiManager
+
 	@State private var avatarName: String = ""
-	@State private var imageUrlString: String?
+	@State private var generatedImage: UIImage?
 	@State private var characterOption: CharacterOption = .default
 	@State private var characterAction: CharacterAction = .default
 	@State private var characterLocation: CharacterLocation = .default
@@ -106,24 +107,25 @@ struct CreateAvatarView: View {
 					.font(.headline)
 			}
 			.anyButton(.press) {
-				isGeneratingImage = true
-				imageUrlString = ""
-				imageUrlString = Constants.randomImageUrl
+				onGenerateImagePressed()
 			}
 			.frame(maxWidth: .infinity)
 			
 			Circle()
 				.foregroundStyle(.gray)
 				.overlay(content: {
-					ImageLoaderView(imageUrlString: imageUrlString ?? "", resultingImage: { _ in
-						// image
-						isFormComplete = true
-						isGeneratingImage = false
-					})
-						.clipShape(Circle())
-						.scaledToFill()
-						.disabled(isGeneratingImage)
-						
+                    if let generatedImage {
+                        Image(uiImage: generatedImage)
+                            .clipShape(Circle())
+                            .scaledToFill()
+                            .disabled(isGeneratingImage)
+                    }
+
+                    if isGeneratingImage {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                            .scaleEffect(1.0)
+                    }
 				})
 				.frame(width: 150)
 				.frame(maxWidth: .infinity)
@@ -136,8 +138,31 @@ struct CreateAvatarView: View {
 			
 		}
 	}
+
+    private func onGenerateImagePressed() {
+        isGeneratingImage = true
+
+        Task {
+            do {
+
+                let prompt = CharacterDescriptionBuilder(
+                    characterOption: characterOption,
+                    characterAction: characterAction,
+                    characterLocation: characterLocation
+                )
+
+                generatedImage = try await aiManager.generateImage(prompt: prompt.characterDescription)
+
+            } catch {
+                print("Error generating image: \(error)")
+            }
+
+            isGeneratingImage = false
+        }
+    }
 }
 
 #Preview {
 	CreateAvatarView()
+        .environment(AIManager(service: MockAIService()))
 }
